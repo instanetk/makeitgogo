@@ -1,4 +1,4 @@
-import ImgMediaCard from './common/Card';
+import ImgMediaCard from './common/ImgMediaCard';
 import { Box, Grid } from '@mui/material';
 
 const Home = () => {

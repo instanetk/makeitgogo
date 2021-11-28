@@ -1,37 +1,13 @@
-import { useContext } from 'react';
-import { Box, Avatar, Typography, TextField, Button, Grid, Link } from '@mui/material';
+import { FC, FormEvent } from 'react';
+import { Box, Avatar, Typography, TextField, Button, Grid, Link, Alert } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { createUserWithEmailAndPassword } from '@firebase/auth';
-import { auth } from './firebase';
-import { AuthContext } from './context/AuthContext';
 
-const SignUp = () => {
-  const loggedUser = useContext(AuthContext);
+interface IProps {
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
+  error: string;
+}
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
-
-    let email = data.get('email') as string;
-    let password = data.get('password') as string;
-    let confirmPassword = data.get('confirmPassword') as string;
-
-    if (password !== confirmPassword) return;
-
-    try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
-    } catch (err: any) {
-      console.error(err.message);
-    }
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
+const SignupForm: FC<IProps> = ({ handleSubmit, error }) => {
   return (
     <Box
       sx={{
@@ -46,7 +22,7 @@ const SignUp = () => {
       <Typography component="h1" variant="h5">
         Sign Up
       </Typography>
-      <Typography>{loggedUser && loggedUser!.email}</Typography>
+      {error && <Alert severity="error">{error}</Alert>}
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <TextField
           margin="normal"
@@ -94,4 +70,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignupForm;

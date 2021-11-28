@@ -10,9 +10,9 @@ const ImgMediaCard = () => {
           Religion Bookshelf
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          A curated library of the mankind's holy scriptures embedded in a exotic carved block of wood to form one
-          level. Features the Tao Te Ching, Analects of Confucious, The Torah, The Discourses of the Buddha, The Qu'ran,
-          The Bible and The Bhagavad Gita.
+          A curated library of mankind's holy scriptures embedded in an exotic carved block of wood to form one level.
+          Features the Tao Te Ching, Analects of Confucious, The Torah, The Discourses of the Buddha, The Qu'ran, The
+          Bible and The Bhagavad Gita.
         </Typography>
       </CardContent>
       <CardActions>

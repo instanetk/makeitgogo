@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FC } from 'react';
 import { AuthContext } from './AuthContext';
 import { UserInfo } from 'firebase/auth';
 import { auth } from '../firebase';
 
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useState<UserInfo | null>(null);
 
   useEffect(() => {
