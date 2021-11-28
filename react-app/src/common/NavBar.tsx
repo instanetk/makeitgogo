@@ -1,5 +1,6 @@
 import { AppBar, Box, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -10,9 +11,11 @@ const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            CodingFunds
+            <Link to="/">CodingFunds</Link>
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" href="/login">
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

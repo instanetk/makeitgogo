@@ -1,4 +1,4 @@
-import { Box, Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Grid, Link } from '@mui/material';
+import { Box, Avatar, Typography, TextField, Button, Grid, Link } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 const Login = () => {
@@ -37,7 +37,7 @@ const Login = () => {
           id="password"
           autoComplete="current-password"
         />
-        {/* <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" /> */}
+
         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
           Sign In
         </Button>
@@ -48,7 +48,7 @@ const Login = () => {
             </Link>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link href="/signup" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>
