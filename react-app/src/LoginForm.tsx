@@ -1,7 +1,13 @@
-import { Box, Avatar, Typography, TextField, Button, Grid, Link } from '@mui/material';
+import { FC, FormEvent } from 'react';
+import { Box, Avatar, Typography, TextField, Button, Grid, Link, Alert } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-const Login = () => {
+interface IProps {
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
+  error: string;
+}
+
+const LoginForm: FC<IProps> = ({ handleSubmit, error }) => {
   return (
     <Box
       sx={{
@@ -16,7 +22,8 @@ const Login = () => {
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
-      <Box component="form" noValidate sx={{ mt: 1 }}>
+      {error && <Alert severity="error">{error}</Alert>}
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <TextField
           margin="normal"
           required
@@ -58,4 +65,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
