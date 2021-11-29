@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
+import { ReactComponent as MakeItGoGo } from '../assets/svg/MakeItGoGo.svg';
 
 const NavBar = () => {
   let user = useContext(AuthContext);
@@ -24,11 +25,13 @@ const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          {/* <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">CodingFunds</Link>
+            <Link to="/">
+              <MakeItGoGo style={{ width: '200px', height: 'auto', marginTop: '20px' }} />
+            </Link>
           </Typography>
           {user ? (
             <>
