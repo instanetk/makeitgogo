@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -23,6 +24,7 @@ const SignUp = () => {
     }
 
     try {
+      setLoading(true);
       await createUserWithEmailAndPassword(auth, email, password);
       navigate('/');
     } catch (err: any) {
@@ -30,7 +32,7 @@ const SignUp = () => {
     }
   };
 
-  return <SignupForm handleSubmit={handleSubmit} error={error} />;
+  return <SignupForm handleSubmit={handleSubmit} error={error} loading={loading} />;
 };
 
 export default SignUp;

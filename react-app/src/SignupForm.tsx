@@ -5,9 +5,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 interface IProps {
   handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
   error: string;
+  loading: boolean;
 }
 
-const SignupForm: FC<IProps> = ({ handleSubmit, error }) => {
+const SignupForm: FC<IProps> = ({ handleSubmit, error, loading }) => {
   return (
     <Box
       sx={{
@@ -54,7 +55,7 @@ const SignupForm: FC<IProps> = ({ handleSubmit, error }) => {
           id="confirmPassword"
           autoComplete="confirm-password"
         />
-        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={loading}>
           Sign Up
         </Button>
         <Grid container>

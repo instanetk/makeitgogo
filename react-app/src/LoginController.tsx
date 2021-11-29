@@ -1,12 +1,15 @@
 import { useState, FormEvent } from 'react';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { auth } from './firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LoginForm from './LoginForm';
 
 const Login = () => {
   const [error, setError] = useState<string>('');
-  const navigate = useNavigate();
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || '/';
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
@@ -18,7 +21,7 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/');
+      navigate(from, { replace: true });
     } catch (err: any) {
       setError(err.message);
     }

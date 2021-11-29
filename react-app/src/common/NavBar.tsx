@@ -11,9 +11,13 @@ const NavBar = () => {
   let user = useContext(AuthContext);
   let navigate = useNavigate();
 
-  const logOut = () => {
-    signOut(auth);
-    navigate('/login');
+  const handleLogOut = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (err: any) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -27,7 +31,7 @@ const NavBar = () => {
             <Link to="/">CodingFunds</Link>
           </Typography>
           {user ? (
-            <Button color="inherit" onClick={logOut}>
+            <Button color="inherit" onClick={handleLogOut}>
               Logout
             </Button>
           ) : (
