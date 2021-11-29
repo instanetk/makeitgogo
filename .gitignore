@@ -1,5 +1,7 @@
 project.notes
 
+#frontend
+
 # dependencies
 react-app/node_modules
 react-app/.pnp
@@ -21,3 +23,8 @@ react-app/.env.production.local
 react-app/npm-debug.log*
 react-app/yarn-debug.log*
 react-app/yarn-error.log*
+
+#backend
+
+backend/.env
+backend/node_modules

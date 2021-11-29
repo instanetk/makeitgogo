@@ -3,7 +3,7 @@ import bookshelf from '../assets/images/bookshelf.png';
 
 const ImgMediaCard = () => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: { xs: 500, md: 345 } }}>
       <CardMedia component="img" alt="green iguana" height="140" image={bookshelf} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

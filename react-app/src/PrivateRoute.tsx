@@ -5,7 +5,7 @@ import { AuthContext } from './context/AuthContext';
 export default function PrivateRoute({ children }: { children: JSX.Element }) {
   let user = useContext(AuthContext);
   let location = useLocation();
-  console.log(user);
+
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} />;
   }

@@ -31,9 +31,14 @@ const NavBar = () => {
             <Link to="/">CodingFunds</Link>
           </Typography>
           {user ? (
-            <Button color="inherit" onClick={handleLogOut}>
-              Logout
-            </Button>
+            <>
+              <Button color="success" variant="contained">
+                Create Campaign
+              </Button>
+              <Button color="inherit" onClick={handleLogOut}>
+                Logout
+              </Button>
+            </>
           ) : (
             <Button color="inherit" href="/login">
               Login
