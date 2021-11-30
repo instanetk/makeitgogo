@@ -30,7 +30,7 @@ const NavBar = () => {
           </IconButton> */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">
-              <MakeItGoGo style={{ width: '200px', height: 'auto', marginTop: '20px' }} />
+              <MakeItGoGo style={{ width: '175px', height: 'auto', marginTop: '20px' }} />
             </Link>
           </Typography>
           {user ? (
