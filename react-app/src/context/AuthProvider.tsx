@@ -1,7 +1,7 @@
 import { useEffect, useState, FC } from 'react';
 import { AuthContext } from './AuthContext';
 import { UserInfo } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth } from '../services/firebase';
 
 export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useState<UserInfo | null>(null);
