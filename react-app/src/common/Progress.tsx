@@ -3,17 +3,17 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { FC } from 'react';
 
 interface IProps {
-  percent: number;
-  progress: number;
   currentAmount: number;
   goalAmount: number;
   backers: number;
 }
 
-const Progress: FC<IProps> = ({ percent, progress, currentAmount, goalAmount, backers }) => {
+const Progress: FC<IProps> = ({ currentAmount, goalAmount, backers }) => {
+  const percent: number = (currentAmount / goalAmount) * 100;
+
   return (
     <>
-      <Box sx={{ alignItems: 'center' }}>
+      <Box sx={{ alignItems: 'center', width: '100%' }}>
         <Box
           sx={{
             display: 'flex',
@@ -22,7 +22,7 @@ const Progress: FC<IProps> = ({ percent, progress, currentAmount, goalAmount, ba
           }}>
           <Box sx={{ display: 'inline-flex' }}>
             <Typography variant="h2" fontWeight="bold" fontSize="1.5rem" color="#222">
-              ${currentAmount}
+              ${currentAmount.toLocaleString('en-US')}
             </Typography>
             <Typography fontWeight="light" fontSize="1.3rem" ml={1}>
               USD
@@ -35,11 +35,11 @@ const Progress: FC<IProps> = ({ percent, progress, currentAmount, goalAmount, ba
           </Box>
         </Box>
         <Box sx={{ width: '100%', mr: 1 }}>
-          <LinearProgress variant="determinate" value={progress} sx={{ height: '15px', borderRadius: '15px' }} />
+          <LinearProgress variant="determinate" value={percent} sx={{ height: '15px', borderRadius: '15px' }} />
         </Box>
-        <Box sx={{ minWidth: 35 }}>
+        <Box sx={{ minWidth: 35, marginTop: '2px' }}>
           <Typography variant="body2" color="text.primary">
-            {`${Math.round(percent)}%`} of {goalAmount}
+            {`${Math.round(percent)}%`} of ${goalAmount.toLocaleString('en-US')}
           </Typography>
         </Box>
       </Box>

@@ -9,6 +9,7 @@ import { Container } from '@mui/material';
 import theme from './assets/theme';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
+import NotFound from './NotFound';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
     </ThemeProvider>

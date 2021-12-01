@@ -1,5 +1,6 @@
-import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, CardActions } from '@mui/material';
 import bookshelf from '../assets/images/bookshelf.png';
+import Progress from './Progress';
 
 const ImgMediaCard = () => {
   return (
@@ -16,8 +17,7 @@ const ImgMediaCard = () => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Progress currentAmount={13118} goalAmount={15000} backers={89} />
       </CardActions>
     </Card>
   );

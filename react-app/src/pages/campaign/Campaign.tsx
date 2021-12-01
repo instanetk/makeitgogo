@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Grid, Box, Typography, Card, CardMedia, Button, Avatar } from '@mui/material';
 import bookshelf from '../../assets/images/bookshelf.png';
-import Progress from './Progress';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import Progress from '../../common/Progress';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { useTitle } from '../../common/Hooks';
 
 const Campaign = () => {
   const [goalAmount, setGoalAmount] = useState<number>(15000);
   const [currentAmount, setCurrentAmount] = useState<number>(13118);
   const [backers, setBackers] = useState<number>(89);
 
-  const percent: number = (currentAmount / goalAmount) * 100;
-  const [progress, setProgress] = useState<number>(percent);
+  let title = 'Religion Bookcase';
+  useTitle(title);
 
   return (
     <>
@@ -49,13 +49,7 @@ const Campaign = () => {
               </Box>
             </Box>
             <Box sx={{ margin: '15px 0' }}>
-              <Progress
-                percent={percent}
-                progress={progress}
-                currentAmount={currentAmount}
-                goalAmount={goalAmount}
-                backers={backers}
-              />
+              <Progress currentAmount={currentAmount} goalAmount={goalAmount} backers={backers} />
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button variant="contained" color="info" sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}>
