@@ -35,9 +35,7 @@ const NavBar = () => {
           </Typography>
           {user ? (
             <>
-              <Button color="success" variant="contained">
-                Create Campaign
-              </Button>
+              <Button color="inherit">Create Campaign</Button>
               <Button color="inherit" onClick={handleLogOut}>
                 Logout
               </Button>

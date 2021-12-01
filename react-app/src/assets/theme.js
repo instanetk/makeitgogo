@@ -1,26 +1,41 @@
 import { createTheme } from '@mui/material';
-import { purple } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
-const primaryColor = purple[700];
-const secondaryColor = purple[900];
+const primaryColor = {
+  light: '#af52bf',
+  main: '#9c27b0',
+  dark: '#6d1b7b',
+};
+const secondaryColor = {
+  light: '#83e345',
+  main: '#64dd17',
+  dark: '#469a10',
+};
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: primaryColor,
+      light: primaryColor.light,
+      main: primaryColor.main,
+      dark: primaryColor.dark,
     },
     secondary: {
-      main: secondaryColor,
+      light: secondaryColor.light,
+      main: secondaryColor.main,
+      dark: secondaryColor.dark,
     },
     text: {
-      primary: '#173A5E',
-      secondary: '#46505A',
+      primary: grey[900],
+      secondary: primaryColor.dark,
     },
     action: {
       active: '#001E3C',
     },
     success: {
-      main: '#009688',
+      main: secondaryColor.dark,
+    },
+    info: {
+      main: '#e91e63',
     },
   },
   components: {

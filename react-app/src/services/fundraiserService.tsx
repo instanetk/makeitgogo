@@ -6,7 +6,10 @@ export interface Campaign {
   image_url: string;
   category: string;
   goal_amount: number;
+  published?: boolean;
   owner: string;
+  _id?: string;
+  date?: Date;
 }
 
 export function postFundraiser(campaign: Campaign) {

@@ -14,7 +14,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavBar />
-      <Container>
+      <Container fixed>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
