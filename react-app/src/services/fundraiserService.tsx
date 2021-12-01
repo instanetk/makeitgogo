@@ -16,3 +16,13 @@ export function postFundraiser(campaign: Campaign) {
   const apiEndpoint = apiUrl + '/fundraiser';
   return http.post(apiEndpoint, campaign);
 }
+
+export function getFundraisers() {
+  const apiEndpoint = apiUrl + '/fundraiser';
+  return http.get(apiEndpoint);
+}
+
+export function getFundraiseById(id: string) {
+  const apiEndpoint = apiUrl + '/fundraiser/campaign/' + id;
+  return http.get(apiEndpoint);
+}

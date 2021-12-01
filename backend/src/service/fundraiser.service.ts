@@ -9,3 +9,21 @@ export async function createFundraiser(input: DocumentDefinition<FundraiserDocum
     throw new Error(ex);
   }
 }
+
+export async function getFundraisers() {
+  try {
+    const fundraisers = await Fundraiser.find();
+    return fundraisers;
+  } catch (ex: any) {
+    throw new Error(ex);
+  }
+}
+
+export async function getFundraiserById(id: string) {
+  try {
+    const fundraiser = await Fundraiser.findById(id);
+    return fundraiser;
+  } catch (ex: any) {
+    throw new Error(ex);
+  }
+}
