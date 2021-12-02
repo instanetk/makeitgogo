@@ -15,17 +15,17 @@ import {
 } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 import MUIRichTextEditor from 'mui-rte';
-import { useState } from 'react';
+import { useState, FC } from 'react';
 
-const CreateCampaignController = () => {
+const CreateCampaignController: FC = () => {
   type DataUnion = string | Blob;
 
   const [image, setImage] = useState<DataUnion>('');
   const [imgUrl, setImgUrl] = useState<string | undefined>();
-  const [imgData, setImgData] = useState<any>();
+  const [textEditor, setTextEditor] = useState();
 
   const save = (data: any) => {
-    console.log(data);
+    setTextEditor(data);
   };
   const setFile = async (e: any) => {
     let image = e.target.files[0];
@@ -41,7 +41,6 @@ const CreateCampaignController = () => {
   };
 
   const uploadImage = (image: any) => {
-    console.log('url', cloudinary, 'imgData', imgData, 'image', image);
     const uploadData = new FormData();
     uploadData.append('file', image);
     uploadData.append('upload_preset', cloudinary.preset);
@@ -54,8 +53,7 @@ const CreateCampaignController = () => {
       .then((resp) => resp.json())
       .then(async (data) => {
         setImgUrl(data.secure_url);
-        setImgData(data);
-        console.log('image uploaded', imgUrl);
+        // console.log('image uploaded', imgUrl);
       })
       .catch((err) => console.log(err));
     setImage('');

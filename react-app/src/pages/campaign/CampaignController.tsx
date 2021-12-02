@@ -3,10 +3,10 @@ import { useTitle } from '../../common/Hooks';
 import { useParams } from 'react-router-dom';
 import { FundraiserContext } from '../../context/FundraiserContext';
 import CampaignView from './CampaignView';
-import { Campaign } from '../../services/fundraiserService';
+import { ICampaign } from '../../interfaces';
 
 const CampaignController: FC = () => {
-  const defaulState: Campaign = {
+  const defaulState: ICampaign = {
     title: 'string;',
     story: 'string;',
     image_url: 'string;',
@@ -19,9 +19,9 @@ const CampaignController: FC = () => {
     date: new Date(),
   };
 
-  const [campaign, setCampaign] = useState<Campaign>(defaulState);
+  const [campaign, setCampaign] = useState<ICampaign>(defaulState);
 
-  const data = useContext<Campaign[] | null>(FundraiserContext);
+  const data = useContext<ICampaign[] | null>(FundraiserContext);
   const { id } = useParams<string>();
   useEffect(() => {
     if (data !== null) {

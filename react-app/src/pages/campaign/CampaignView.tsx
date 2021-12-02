@@ -3,9 +3,9 @@ import { Grid, Box, Typography, Card, CardMedia, Button, Avatar } from '@mui/mat
 import Progress from '../../common/Progress';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import bookshelf from '../../assets/images/bookshelf.png';
-import { Campaign } from '../../services/fundraiserService';
+import { ICampaign } from '../../interfaces';
 
-const CampaignView: FC<Campaign> = (campaign) => {
+const CampaignView: FC<ICampaign> = (campaign) => {
   return (
     <>
       <Grid container spacing={4} mt={1}>
@@ -26,7 +26,7 @@ const CampaignView: FC<Campaign> = (campaign) => {
             }}>
             <Box>
               <Typography color="text.secondary" fontSize="1rem" gutterBottom>
-                FUNDING
+                FUNDING / ART / 87 FAVES
               </Typography>
               <Typography variant="h1" fontWeight="bold" fontSize="2rem" color="#222" gutterBottom>
                 {campaign.title}

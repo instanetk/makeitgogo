@@ -1,4 +1,4 @@
 import { createContext } from 'react';
-import { Campaign } from '../services/fundraiserService';
+import { ICampaign } from '../interfaces';
 
-export const FundraiserContext = createContext<Campaign[] | null>(null);
+export const FundraiserContext = createContext<ICampaign[] | null>(null);
