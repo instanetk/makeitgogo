@@ -13,7 +13,6 @@ export async function createFundraiserHandler(req: Request, res: Response) {
 }
 
 export async function getFundraisersHandler(req: Request, res: Response) {
-  console.log('wrong route');
   try {
     let fundraisers = await getFundraisers();
     return res.send(fundraisers);
@@ -25,11 +24,6 @@ export async function getFundraisersHandler(req: Request, res: Response) {
 
 export async function getFundraiserByIdHandler(req: Request, res: Response) {
   let { id } = req.params;
-  console.log(id);
-
-  if (typeof id !== 'string') {
-    res.status(500).send('Invalid ID');
-  }
 
   try {
     let fundraiser = await getFundraiserById(id);

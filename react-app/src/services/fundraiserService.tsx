@@ -6,6 +6,7 @@ export interface Campaign {
   image_url: string;
   category: string;
   goal_amount: number;
+  current_amount: number;
   published?: boolean;
   owner: string;
   _id?: string;
@@ -24,5 +25,5 @@ export function getFundraisers() {
 
 export function getFundraiseById(id: string) {
   const apiEndpoint = apiUrl + '/fundraiser/campaign/' + id;
-  return http.get(apiEndpoint);
+  return http.get<Campaign>(apiEndpoint);
 }

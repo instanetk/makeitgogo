@@ -8,10 +8,9 @@ require('dotenv').config();
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded());
 app.use(cors());
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, async () => {
   logger.info(`App is running in port ${port}`);
