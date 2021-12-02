@@ -6,8 +6,12 @@ export const FundraiserProvider: FC = ({ children }) => {
   const [fundraisers, setFundraisers] = useState<Campaign[] | null>(null);
 
   const fetchData = useCallback(async () => {
-    let { data } = await getFundraisers();
-    setFundraisers(data);
+    try {
+      let { data } = await getFundraisers();
+      setFundraisers(data);
+    } catch (ex: any) {
+      console.log(ex.message);
+    }
   }, []);
 
   useEffect(() => {

@@ -10,6 +10,7 @@ import theme from './assets/theme';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './NotFound';
+import './App.css';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/campaign" element={<Campaign />} />
+          <Route path="/campaign/:id" element={<Campaign />} />
           <Route
             path="dashboard"
             element={
