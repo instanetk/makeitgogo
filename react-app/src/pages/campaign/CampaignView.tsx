@@ -1,21 +1,11 @@
-import { useContext } from 'react';
+import { FC } from 'react';
 import { Grid, Box, Typography, Card, CardMedia, Button, Avatar } from '@mui/material';
-import bookshelf from '../../assets/images/bookshelf.png';
 import Progress from '../../common/Progress';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { useTitle } from '../../common/Hooks';
-import { useParams } from 'react-router-dom';
-import { FundraiserContext } from '../../context/FundraiserContext';
+import bookshelf from '../../assets/images/bookshelf.png';
+import { Campaign } from '../../services/fundraiserService';
 
-const Campaign = () => {
-  const data = useContext(FundraiserContext);
-
-  const { id } = useParams();
-
-  const [campaign] = data!.filter((obj) => obj._id === id);
-
-  useTitle(campaign.title);
-
+const CampaignView: FC<Campaign> = (campaign) => {
   return (
     <>
       <Grid container spacing={4} mt={1}>
@@ -102,4 +92,4 @@ const Campaign = () => {
   );
 };
 
-export default Campaign;
+export default CampaignView;
