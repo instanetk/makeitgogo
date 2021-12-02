@@ -47,6 +47,25 @@ const theme = createTheme({
       },
     },
   },
+  overrides: {
+    MUIRichTextEditor: {
+      root: {
+        marginTop: 10,
+        width: '100%',
+        height: '300px',
+      },
+      editor: {
+        borderBottom: '0px solid gray',
+      },
+      editorContainer: {
+        border: '1px solid #d5d5d5',
+        width: '96%',
+        height: '250px',
+        padding: '1rem',
+        overflow: 'auto',
+      },
+    },
+  },
 });
 
 export default theme;

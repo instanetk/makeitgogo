@@ -30,7 +30,7 @@ const CampaignController: FC = () => {
     }
   }, [data, id]);
 
-  // useTitle(post.title);
+  useTitle(campaign.title);
 
   return <CampaignView {...campaign} />;
 };
