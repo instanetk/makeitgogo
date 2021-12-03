@@ -53,6 +53,10 @@ const fundraiserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  faves: {
+    type: Number,
+    default: 1,
+  },
 });
 
 const Fundraiser = mongoose.model('Fundraiser', fundraiserSchema);

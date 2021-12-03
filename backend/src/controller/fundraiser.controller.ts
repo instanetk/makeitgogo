@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import logger from '../utils/logger';
-import { createFundraiser, getFundraisers, getFundraiserById } from '../service/fundraiser.service';
+import { createFundraiser, getFundraisers, getFundraiserById, postFaves } from '../service/fundraiser.service';
 
 export async function createFundraiserHandler(req: Request, res: Response) {
   try {
@@ -31,5 +31,17 @@ export async function getFundraiserByIdHandler(req: Request, res: Response) {
   } catch (ex: any) {
     logger.error(ex);
     res.status(400).send(ex.message);
+  }
+}
+
+export async function postFavesHandler(req: Request, res: Response) {
+  let { id } = req.params;
+
+  try {
+    let fundraiser = await postFaves(id);
+    return res.send(fundraiser);
+  } catch (ex: any) {
+    logger.error(ex);
+    res.status(400).send(ex.messages);
   }
 }

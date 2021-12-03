@@ -15,3 +15,8 @@ export function getFundraiseById(id: string) {
   const apiEndpoint = apiUrl + '/fundraiser/campaign/' + id;
   return http.get<ICampaign>(apiEndpoint);
 }
+
+export function postFaves(id: string) {
+  const apiEndpoint = apiUrl + '/fundraiser/campaign/faves/' + id;
+  return http.post(apiEndpoint);
+}

@@ -4,7 +4,12 @@ import Progress from '../../common/Progress';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { ICampaign } from '../../interfaces';
 
-const CampaignView: FC<ICampaign> = (campaign) => {
+export interface IProps {
+  campaign: ICampaign;
+  giveFaves: (id: string) => Promise<void>;
+}
+
+const CampaignView: FC<IProps> = ({ campaign, giveFaves }) => {
   return (
     <>
       <Grid container spacing={4} mt={1}>
@@ -25,8 +30,9 @@ const CampaignView: FC<ICampaign> = (campaign) => {
             }}>
             <Box>
               <Typography color="text.secondary" fontSize="1rem" gutterBottom>
-                FUNDING / {campaign.category.toUpperCase()} / 87 FAVES
+                FUNDING / {campaign.category.toUpperCase()} / {campaign.faves} FAVES
               </Typography>
+
               <Typography variant="h1" fontWeight="bold" fontSize="2rem" color="#222" gutterBottom>
                 {campaign.title}
               </Typography>
@@ -47,7 +53,13 @@ const CampaignView: FC<ICampaign> = (campaign) => {
               <Button variant="contained" color="info" sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}>
                 Back It
               </Button>
-              <Button variant="outlined" color="primary" sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}>
+              <Button
+                variant="outlined"
+                color="primary"
+                sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}
+                onClick={() => {
+                  if (campaign._id !== undefined) giveFaves(campaign._id);
+                }}>
                 <FavoriteBorderOutlinedIcon sx={{ mr: '5px' }} /> Fav It
               </Button>
             </Box>

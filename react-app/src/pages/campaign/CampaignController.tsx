@@ -3,7 +3,8 @@ import { useTitle } from '../../common/Hooks';
 import { useParams } from 'react-router-dom';
 import CampaignView from './CampaignView';
 import { ICampaign } from '../../interfaces';
-import { getFundraiseById } from '../../services/fundraiserService';
+import { getFundraiseById, postFaves } from '../../services/fundraiserService';
+import { AxiosResponse } from 'axios';
 
 const CampaignController: FC = () => {
   const defaulState: ICampaign = {
@@ -38,9 +39,14 @@ const CampaignController: FC = () => {
     fetchData();
   }, [fetchData]);
 
+  const giveFaves = async (id: string) => {
+    await postFaves(id);
+    fetchData();
+  };
+
   useTitle(campaign.title);
 
-  return <CampaignView {...campaign} />;
+  return <CampaignView campaign={campaign} giveFaves={giveFaves} />;
 };
 
 export default CampaignController;

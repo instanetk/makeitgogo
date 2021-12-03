@@ -5,6 +5,7 @@ import {
   createFundraiserHandler,
   getFundraisersHandler,
   getFundraiserByIdHandler,
+  postFavesHandler,
 } from './controller/fundraiser.controller';
 
 function routes(app: Express) {
@@ -17,6 +18,8 @@ function routes(app: Express) {
   app.get('/api/fundraiser', getFundraisersHandler);
 
   app.get('/api/fundraiser/campaign/:id', getFundraiserByIdHandler);
+
+  app.post('/api/fundraiser/campaign/faves/:id', postFavesHandler);
 }
 
 export default routes;

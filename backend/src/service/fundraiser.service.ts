@@ -27,3 +27,17 @@ export async function getFundraiserById(id: string) {
     throw new Error(ex);
   }
 }
+
+export async function postFaves(id: string) {
+  try {
+    const fundraiser = await Fundraiser.findById(id);
+
+    fundraiser.faves = fundraiser.faves + 1;
+
+    fundraiser.save();
+
+    return fundraiser;
+  } catch (ex: any) {
+    throw new Error(ex);
+  }
+}

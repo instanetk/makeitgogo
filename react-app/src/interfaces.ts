@@ -1,3 +1,5 @@
+import { UserInfo } from 'firebase/auth';
+
 export interface ICampaign {
   title: string;
   story: string;
@@ -9,4 +11,7 @@ export interface ICampaign {
   owner: string;
   _id?: string;
   date?: Date;
+  faves?: number;
 }
+
+export type IUser = UserInfo | null;

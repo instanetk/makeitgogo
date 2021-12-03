@@ -1,9 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { UserInfo } from 'firebase/auth';
+import { IUser } from './interfaces';
 
-type User = UserInfo | null;
-
-const PrivateRoute = ({ children, user }: { children: JSX.Element; user: User }) => {
+const PrivateRoute = ({ children, user }: { children: JSX.Element; user: IUser }) => {
   let location = useLocation();
 
   if (!user) {
