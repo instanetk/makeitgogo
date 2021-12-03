@@ -8,6 +8,14 @@ import { FundraiserContext } from './context/FundraiserContext';
 const Home = () => {
   const [fundraisers, setFundraisers] = useState<ICampaign[] | null>([]);
 
+  if (fundraisers !== null) {
+    fundraisers.sort(function (a: any, b: any) {
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return +b.date - +a.date;
+    });
+  }
+
   const data = useContext(FundraiserContext);
 
   useEffect(() => {
@@ -15,7 +23,7 @@ const Home = () => {
   }, [data]);
 
   return (
-    <Box mt={4}>
+    <Box mt={4} sx={{ display: 'flex', justifyContent: 'center' }}>
       <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
         {fundraisers &&
           // eslint-disable-next-line array-callback-return
@@ -27,6 +35,7 @@ const Home = () => {
                     <ImgMediaCard
                       title={campaign.title}
                       story={campaign.story}
+                      image={campaign.image_url}
                       currentAmount={campaign.current_amount}
                       goalAmount={campaign.goal_amount}
                     />

@@ -1,25 +1,29 @@
 import { Card, CardMedia, CardContent, Typography, CardActions, CardActionArea } from '@mui/material';
-import bookshelf from '../assets/images/bookshelf.png';
 import Progress from './Progress';
 import { FC } from 'react';
 
 interface IProps {
   title: string;
   story: string;
+  image: string;
   currentAmount: number;
   goalAmount: number;
 }
 
-const ImgMediaCard: FC<IProps> = ({ title, story, currentAmount, goalAmount }) => {
+const ImgMediaCard: FC<IProps> = ({ title, story, image, currentAmount, goalAmount }) => {
   return (
-    <Card sx={{ maxWidth: { xs: 500, md: 345 } }}>
+    <Card sx={{ maxWidth: { xs: 500, md: 345 }, height: '460px' }}>
       <CardActionArea>
-        <CardMedia component="img" alt={title} height="140" image={bookshelf} />
+        <CardMedia component="img" alt={title} height={160} image={image} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.primary">
+          <Typography
+            variant="body2"
+            color="text.primary"
+            paragraph={true}
+            sx={{ maxHeight: '120px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {story}
           </Typography>
         </CardContent>

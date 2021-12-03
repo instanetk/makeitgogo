@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Grid, Box, Typography, Card, CardMedia, Button, Avatar } from '@mui/material';
 import Progress from '../../common/Progress';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import bookshelf from '../../assets/images/bookshelf.png';
 import { ICampaign } from '../../interfaces';
 
 const CampaignView: FC<ICampaign> = (campaign) => {
@@ -12,7 +11,7 @@ const CampaignView: FC<ICampaign> = (campaign) => {
         <Grid item xs={12} md={7}>
           <Box>
             <Card>
-              <CardMedia component="img" alt={campaign.title} height="400" image={bookshelf} />
+              <CardMedia component="img" alt={campaign.title} height="400" image={campaign.image_url} />
             </Card>
           </Box>
         </Grid>
@@ -26,13 +25,13 @@ const CampaignView: FC<ICampaign> = (campaign) => {
             }}>
             <Box>
               <Typography color="text.secondary" fontSize="1rem" gutterBottom>
-                FUNDING / ART / 87 FAVES
+                FUNDING / {campaign.category.toUpperCase()} / 87 FAVES
               </Typography>
               <Typography variant="h1" fontWeight="bold" fontSize="2rem" color="#222" gutterBottom>
                 {campaign.title}
               </Typography>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', margin: '10px 0' }}>
+            {/* <Box sx={{ display: 'flex', alignItems: 'center', margin: '10px 0' }}>
               <Avatar sx={{ bgcolor: 'primary' }} alt="David Quintero" src="/broken-image.jpg" />
               <Box ml={2}>
                 <Typography fontWeight="bold" fontSize="1.1rem">
@@ -40,7 +39,7 @@ const CampaignView: FC<ICampaign> = (campaign) => {
                 </Typography>
                 <Typography>Orlando, FL</Typography>
               </Box>
-            </Box>
+            </Box> */}
             <Box sx={{ margin: '15px 0' }}>
               <Progress currentAmount={campaign.current_amount} goalAmount={campaign.goal_amount} backers={90} />
             </Box>

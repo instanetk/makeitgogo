@@ -1,13 +1,15 @@
-import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { AuthContext } from './context/AuthContext';
+import { UserInfo } from 'firebase/auth';
 
-export default function PrivateRoute({ children }: { children: JSX.Element }) {
-  let user = useContext(AuthContext);
+type User = UserInfo | null;
+
+const PrivateRoute = ({ children, user }: { children: JSX.Element; user: User }) => {
   let location = useLocation();
 
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
   return children;
-}
+};
+
+export default PrivateRoute;

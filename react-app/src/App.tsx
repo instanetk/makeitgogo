@@ -12,8 +12,12 @@ import PrivateRoute from './PrivateRoute';
 import NotFound from './NotFound';
 import Footer from './common/Footer';
 import './App.css';
+import { AuthContext } from './context/AuthContext';
+import { useContext } from 'react';
 
 function App() {
+  let user = useContext(AuthContext);
+
   return (
     <ThemeProvider theme={theme}>
       <NavBar />
@@ -26,7 +30,7 @@ function App() {
           <Route
             path="/create"
             element={
-              <PrivateRoute>
+              <PrivateRoute user={user}>
                 <CreateCampaignController />
               </PrivateRoute>
             }
