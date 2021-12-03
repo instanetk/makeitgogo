@@ -1,12 +1,25 @@
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Grid } from '@mui/material';
 import ImgMediaCard from './common/ImgMediaCard';
 import { ICampaign } from './interfaces';
-import { FundraiserContext } from './context/FundraiserContext';
+import { getFundraisers } from './services/fundraiserService';
 
 const Home = () => {
   const [fundraisers, setFundraisers] = useState<ICampaign[] | null>([]);
+
+  const fetchData = useCallback(async () => {
+    try {
+      let { data } = await getFundraisers();
+      setFundraisers(data);
+    } catch (ex: any) {
+      console.log(ex.message);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   if (fundraisers !== null) {
     fundraisers.sort(function (a: any, b: any) {
@@ -15,12 +28,6 @@ const Home = () => {
       return +b.date - +a.date;
     });
   }
-
-  const data = useContext(FundraiserContext);
-
-  useEffect(() => {
-    setFundraisers(data);
-  }, [data]);
 
   return (
     <Box mt={4} sx={{ display: 'flex', justifyContent: 'center' }}>

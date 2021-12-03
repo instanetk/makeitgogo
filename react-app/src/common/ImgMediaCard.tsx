@@ -16,14 +16,14 @@ const ImgMediaCard: FC<IProps> = ({ title, story, image, currentAmount, goalAmou
       <CardActionArea>
         <CardMedia component="img" alt={title} height={160} image={image} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" sx={{ height: '95px' }}>
             {title}
           </Typography>
           <Typography
             variant="body2"
             color="text.primary"
             paragraph={true}
-            sx={{ maxHeight: '60px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            sx={{ height: '60px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {story}
           </Typography>
         </CardContent>

@@ -1,9 +1,9 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useTitle } from '../../common/Hooks';
 import { useParams } from 'react-router-dom';
-import { FundraiserContext } from '../../context/FundraiserContext';
 import CampaignView from './CampaignView';
 import { ICampaign } from '../../interfaces';
+import { getFundraiseById } from '../../services/fundraiserService';
 
 const CampaignController: FC = () => {
   const defaulState: ICampaign = {
@@ -21,14 +21,22 @@ const CampaignController: FC = () => {
 
   const [campaign, setCampaign] = useState<ICampaign>(defaulState);
 
-  const data = useContext<ICampaign[] | null>(FundraiserContext);
   const { id } = useParams<string>();
-  useEffect(() => {
-    if (data !== null) {
-      const [campaign] = data.filter((obj) => obj._id === id);
-      setCampaign(campaign);
+
+  const fetchData = useCallback(async () => {
+    try {
+      if (id !== undefined) {
+        let { data } = await getFundraiseById(id);
+        setCampaign(data);
+      }
+    } catch (ex: any) {
+      console.log(ex.message);
     }
-  }, [data, id]);
+  }, [id]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   useTitle(campaign.title);
 
