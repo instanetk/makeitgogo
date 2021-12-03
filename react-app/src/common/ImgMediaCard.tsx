@@ -23,7 +23,7 @@ const ImgMediaCard: FC<IProps> = ({ title, story, image, currentAmount, goalAmou
             variant="body2"
             color="text.primary"
             paragraph={true}
-            sx={{ maxHeight: '120px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            sx={{ maxHeight: '60px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {story}
           </Typography>
         </CardContent>

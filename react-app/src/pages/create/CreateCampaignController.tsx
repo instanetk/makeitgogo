@@ -13,10 +13,10 @@ import {
   InputAdornment,
   Button,
   SelectChangeEvent,
+  TextareaAutosize,
 } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
-import MUIRichTextEditor, { TMUIRichTextEditorRef } from 'mui-rte';
-import { useState, FC, useContext, useRef } from 'react';
+import { useState, FC, useContext } from 'react';
 import { ICampaign } from '../../interfaces';
 import { AuthContext } from '../../context/AuthContext';
 import { postFundraiser } from '../../services/fundraiserService';
@@ -41,6 +41,11 @@ const CreateCampaignController: FC = () => {
     if (!isNaN(amount)) {
       setGoalAmount(amount);
     } else setGoalAmount(0);
+  };
+
+  const handleTextEditor = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    let story = event.target.value;
+    setTextEditor(story);
   };
 
   const handleCategory = (event: SelectChangeEvent<unknown>) => {
@@ -78,19 +83,6 @@ const CreateCampaignController: FC = () => {
         setButtonLoading(false);
       }
     }
-  };
-
-  const ref = useRef<TMUIRichTextEditorRef>(null);
-
-  const handleEditorChange = (): void => {
-    // setTextEditor(ref.current);
-    ref.current?.save();
-    console.log(textEditor);
-  };
-
-  const handleEditorSave = (data: any) => {
-    console.log(data);
-    setTextEditor(data);
   };
 
   const setFile = async (e: any) => {
@@ -164,27 +156,13 @@ const CreateCampaignController: FC = () => {
                 <Typography variant="h2" fontSize="1.2rem" fontWeight="bold">
                   Tell Your Story
                 </Typography>
-                <MUIRichTextEditor
-                  label="Start typing..."
-                  ref={ref}
-                  onChange={handleEditorChange}
-                  onSave={handleEditorSave}
-                  controls={[
-                    'title',
-                    'bold',
-                    'italic',
-                    'underline',
-                    'strikethrough',
-                    'highlight',
-                    'undo',
-                    'redo',
-                    'link',
-                    'numberList',
-                    'bulletList',
-                    'quote',
-                    'code',
-                    'save',
-                  ]}
+                <TextareaAutosize
+                  aria-label="Tell Your Story: text area"
+                  placeholder="Start writing..."
+                  style={{ width: '100%', height: '250px', border: '1px solid grey', marginTop: '10px' }}
+                  id="story"
+                  value={textEditor}
+                  onChange={handleTextEditor}
                 />
               </Box>
               <Box mt={10}>
