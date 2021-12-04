@@ -230,6 +230,7 @@ const CreateCampaignController: FC = () => {
                     sx={{ width: '100%' }}
                     onChange={handleAmount}
                     value={goalAmount}
+                    type="number"
                   />
                 </FormControl>
               </Box>

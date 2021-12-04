@@ -6,7 +6,10 @@ import Fundraiser from '../models/fundraiser.model';
 
 export async function processContributionHandler(req: Request, res: Response) {
   let fundraiser;
-  //process stripe charge in pennies
+
+  console.log(req.body);
+  // consider implementing 2 Phased Transactions
+  // process stripe charge in pennies
   try {
     fundraiser = await Fundraiser.findById(req.body.fundraiserId);
 
@@ -16,8 +19,7 @@ export async function processContributionHandler(req: Request, res: Response) {
       description: fundraiser.title,
       statement_descriptor: process.env.COMPANY_NAME,
       on_behalf_of: fundraiser.stripeId,
-      // need a source (token) or a customer
-      // https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+      source: req.body.token.id,
     });
     console.log(charge);
   } catch (ex: any) {

@@ -4,6 +4,8 @@ import { createFundraiser, getFundraisers, getFundraiserById, postFaves } from '
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export async function createFundraiserHandler(req: Request, res: Response) {
+  // consider implementing 2 Phased Transactions
+
   let stripeAccount;
 
   // First create user account on Stripe to store ID on our Fundraiser document
@@ -27,6 +29,7 @@ export async function createFundraiserHandler(req: Request, res: Response) {
   // Destructure client request object to set stripeId
 
   const stripeFundraiser = { ...req.body, stripeId: stripeAccount.id };
+
   // Create our Fundraiser
   try {
     let fundraiser = await createFundraiser(stripeFundraiser);

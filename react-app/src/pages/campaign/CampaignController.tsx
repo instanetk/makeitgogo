@@ -24,6 +24,7 @@ const CampaignController: FC = () => {
   };
 
   const [campaign, setCampaign] = useState<ICampaign>(defaulState);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const { id } = useParams<string>();
 
@@ -56,7 +57,14 @@ const CampaignController: FC = () => {
     owner = loggedUser === campaign.owner;
   }
 
-  return <CampaignView campaign={campaign} giveFaves={giveFaves} owner={owner} />;
+  let modal = {
+    open: modalOpen,
+    handleClose: function () {
+      setModalOpen(!modalOpen);
+    },
+  };
+
+  return <CampaignView campaign={campaign} giveFaves={giveFaves} owner={owner} modal={modal} />;
 };
 
 export default CampaignController;

@@ -1,4 +1,5 @@
 import { UserInfo } from 'firebase/auth';
+import { Token } from '@stripe/stripe-js';
 
 export interface ICampaign {
   _id?: string;
@@ -23,6 +24,12 @@ export interface IContribution {
   amount: number;
   fundraiserId: string;
   date?: Date;
+}
+
+export interface ITransaction {
+  amount: number;
+  fundraiserId: string;
+  token: Token;
 }
 
 export type IUser = UserInfo | null;

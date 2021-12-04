@@ -4,16 +4,22 @@ import Progress from '../../common/Progress';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { ICampaign } from '../../interfaces';
 import { Link } from 'react-router-dom';
+import PaymentModal from './PaymentModal';
 
 export interface IProps {
   campaign: ICampaign;
   giveFaves: (id: string) => Promise<void>;
   owner: boolean;
+  modal: {
+    open: boolean;
+    handleClose: () => void;
+  };
 }
 
-const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner }) => {
+const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
   return (
     <>
+      <PaymentModal open={modal.open} handleClose={modal.handleClose} campaign={campaign} />
       <Grid container spacing={4} mt={1}>
         <Grid item xs={12} md={7}>
           <Box>
@@ -61,7 +67,11 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner }) => {
               />
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Button variant="contained" color="info" sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}>
+              <Button
+                variant="contained"
+                color="info"
+                sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}
+                onClick={modal.handleClose}>
                 Back It
               </Button>
               <Button
