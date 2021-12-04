@@ -105,7 +105,10 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner }) => {
                       ${contribution.amount && contribution.amount.toLocaleString('en-US')}
                     </Typography>
                     <Typography fontSize="1.1rem" ml={1}>
-                      on {contribution.date}
+                      on{' '}
+                      {() => {
+                        if (contribution.date !== undefined) new Date(contribution.date).toLocaleString();
+                      }}
                     </Typography>
                   </Box>
                 </Box>
