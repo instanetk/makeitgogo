@@ -1,22 +1,25 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState, useContext } from 'react';
 import { useTitle } from '../../common/Hooks';
 import { useParams } from 'react-router-dom';
 import CampaignView from './CampaignView';
 import { ICampaign } from '../../interfaces';
 import { getFundraiseById, postFaves } from '../../services/fundraiserService';
-import { AxiosResponse } from 'axios';
+import { AuthContext } from '../../context/AuthContext';
 
 const CampaignController: FC = () => {
+  const user = useContext(AuthContext);
+
   const defaulState: ICampaign = {
-    title: 'string;',
-    story: 'string;',
-    image_url: 'string;',
-    category: 'string;',
+    title: '',
+    story: '',
+    image_url: '',
+    category: '',
     goal_amount: 1,
     current_amount: 0,
     published: false,
-    owner: 'string;',
-    _id: 'string;',
+    owner: '',
+    email: '',
+    _id: '',
     date: new Date(),
   };
 
@@ -46,7 +49,14 @@ const CampaignController: FC = () => {
 
   useTitle(campaign.title);
 
-  return <CampaignView campaign={campaign} giveFaves={giveFaves} />;
+  let loggedUser;
+  let owner = false;
+  if (user !== null) {
+    loggedUser = user.uid;
+    owner = loggedUser === campaign.owner;
+  }
+
+  return <CampaignView campaign={campaign} giveFaves={giveFaves} owner={owner} />;
 };
 
 export default CampaignController;

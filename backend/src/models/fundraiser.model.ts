@@ -10,6 +10,7 @@ export interface FundraiserDocument extends mongoose.Document {
   date: Date;
   published: boolean;
   owner: string;
+  faves?: string;
 }
 
 const fundraiserSchema = new mongoose.Schema({
@@ -50,6 +51,14 @@ const fundraiserSchema = new mongoose.Schema({
     default: true,
   },
   owner: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  stripeId: {
     type: String,
     required: true,
   },

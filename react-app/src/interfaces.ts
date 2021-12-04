@@ -9,9 +9,11 @@ export interface ICampaign {
   current_amount: number;
   published?: boolean;
   owner: string;
+  email: string | null;
   _id?: string;
   date?: Date;
   faves?: number;
+  stripeId?: string;
 }
 
 export type IUser = UserInfo | null;

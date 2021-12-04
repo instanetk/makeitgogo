@@ -14,6 +14,7 @@ import Footer from './common/Footer';
 import './App.css';
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
+import Dashboard from './Dashboard';
 
 function App() {
   let user = useContext(AuthContext);
@@ -32,6 +33,14 @@ function App() {
             element={
               <PrivateRoute user={user}>
                 <CreateCampaignController />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/campaign/edit/:id"
+            element={
+              <PrivateRoute user={user}>
+                <Dashboard />
               </PrivateRoute>
             }
           />

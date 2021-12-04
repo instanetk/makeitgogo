@@ -3,13 +3,15 @@ import { Grid, Box, Typography, Card, CardMedia, Button, Avatar } from '@mui/mat
 import Progress from '../../common/Progress';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { ICampaign } from '../../interfaces';
+import { Link } from 'react-router-dom';
 
 export interface IProps {
   campaign: ICampaign;
   giveFaves: (id: string) => Promise<void>;
+  owner: boolean;
 }
 
-const CampaignView: FC<IProps> = ({ campaign, giveFaves }) => {
+const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner }) => {
   return (
     <>
       <Grid container spacing={4} mt={1}>
@@ -29,9 +31,14 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves }) => {
               height: '100%',
             }}>
             <Box>
-              <Typography color="text.secondary" fontSize="1rem" gutterBottom>
-                FUNDING / {campaign.category.toUpperCase()} / {campaign.faves} FAVES
-              </Typography>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography color="text.secondary" fontSize="1rem" gutterBottom>
+                  FUNDING / {campaign.category.toUpperCase()} / {campaign.faves} FAVES{' '}
+                </Typography>
+                <Typography color="text.primary" fontSize="1rem" gutterBottom>
+                  {owner && <Link to={'/campaign/edit/' + campaign._id}>EDIT</Link>}
+                </Typography>
+              </Box>
 
               <Typography variant="h1" fontWeight="bold" fontSize="2rem" color="#222" gutterBottom>
                 {campaign.title}

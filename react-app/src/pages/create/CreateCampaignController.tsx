@@ -69,6 +69,7 @@ const CreateCampaignController: FC = () => {
         goal_amount: goalAmount,
         current_amount: 0,
         owner: user.uid,
+        email: user.email,
       };
       try {
         console.log(requestObject);

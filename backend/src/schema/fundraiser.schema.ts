@@ -25,5 +25,8 @@ export const createFundraiserSchema = object({
     owner: string({
       required_error: 'Owner is required',
     }),
+    email: string({
+      required_error: 'Email is required',
+    }),
   }),
 });

@@ -28,7 +28,7 @@ const ImgMediaCard: FC<IProps> = ({ title, story, image, currentAmount, goalAmou
           </Typography>
         </CardContent>
         <CardActions>
-          <Progress currentAmount={currentAmount} goalAmount={goalAmount} backers={89} />
+          <Progress currentAmount={currentAmount} goalAmount={goalAmount} backers={118} />
         </CardActions>
       </CardActionArea>
     </Card>
