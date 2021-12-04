@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { contributionSchema, ContributionDocument } from '../models/contribution.model';
 
 export interface FundraiserDocument extends mongoose.Document {
   title: string;
@@ -10,6 +11,8 @@ export interface FundraiserDocument extends mongoose.Document {
   date: Date;
   published: boolean;
   owner: string;
+  stripeId?: string;
+  contributions?: [ContributionDocument];
   faves?: string;
 }
 
@@ -61,6 +64,9 @@ const fundraiserSchema = new mongoose.Schema({
   stripeId: {
     type: String,
     required: true,
+  },
+  contributions: {
+    type: [contributionSchema],
   },
   faves: {
     type: Number,

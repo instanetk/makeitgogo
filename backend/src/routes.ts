@@ -7,7 +7,7 @@ import {
   getFundraiserByIdHandler,
   postFavesHandler,
 } from './controller/fundraiser.controller';
-import { checkoutSessionHandler, createStripeUserAccountHandler } from './controller/stripe.controller';
+import { processContributionHandler } from './controller/contribution.controller';
 
 function routes(app: Express) {
   app.get('/test', (req: Request, res: Response) => {
@@ -22,9 +22,7 @@ function routes(app: Express) {
 
   app.post('/api/fundraiser/campaign/faves/:id', postFavesHandler);
 
-  app.post('/api/stripe/create-checkout-session', checkoutSessionHandler);
-
-  app.post('/api/stripe/create-user-account', createStripeUserAccountHandler);
+  app.post('/api/fundraiser/campaign/contribution', processContributionHandler);
 }
 
 export default routes;

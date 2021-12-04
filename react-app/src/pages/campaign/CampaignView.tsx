@@ -54,7 +54,11 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner }) => {
               </Box>
             </Box> */}
             <Box sx={{ margin: '15px 0' }}>
-              <Progress currentAmount={campaign.current_amount} goalAmount={campaign.goal_amount} backers={90} />
+              <Progress
+                currentAmount={campaign.current_amount}
+                goalAmount={campaign.goal_amount}
+                contributions={campaign.contributions}
+              />
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button variant="contained" color="info" sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}>
@@ -90,17 +94,24 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner }) => {
               CONTRIBUTIONS
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center' }} mt={2}>
-            <Avatar sx={{ bgcolor: 'primary' }} alt="Miranda Otto" src="/broken-image.jpg" />
-            <Box ml={2} sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography fontWeight="bold" fontSize="1.1rem">
-                Miranda Otto
-              </Typography>
-              <Typography fontSize="1.1rem" ml={1}>
-                $86
-              </Typography>
-            </Box>
-          </Box>
+
+          {campaign.contributions &&
+            campaign.contributions.map((contribution) => {
+              return (
+                <Box sx={{ display: 'flex', alignItems: 'center' }} mt={2}>
+                  <Avatar sx={{ bgcolor: 'primary' }} alt="+" src="/broken-image.jpg" />
+                  <Box ml={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Typography fontWeight="bold" fontSize="1.1rem">
+                      ${contribution.amount && contribution.amount.toLocaleString('en-US')}
+                    </Typography>
+                    <Typography fontSize="1.1rem" ml={1}>
+                      on {contribution.date}
+                    </Typography>
+                  </Box>
+                </Box>
+              );
+            })}
+
           <Box mt={2}>
             <Typography color="text.primary"></Typography>
           </Box>

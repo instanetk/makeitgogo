@@ -1,6 +1,7 @@
 import { Card, CardMedia, CardContent, Typography, CardActions, CardActionArea } from '@mui/material';
 import Progress from './Progress';
 import { FC } from 'react';
+import { IContribution } from '../interfaces';
 
 interface IProps {
   title: string;
@@ -8,9 +9,10 @@ interface IProps {
   image: string;
   currentAmount: number;
   goalAmount: number;
+  contributions: [IContribution] | undefined;
 }
 
-const ImgMediaCard: FC<IProps> = ({ title, story, image, currentAmount, goalAmount }) => {
+const ImgMediaCard: FC<IProps> = ({ title, story, image, currentAmount, goalAmount, contributions }) => {
   return (
     <Card sx={{ maxWidth: { xs: 500, md: 345 }, height: '460px' }}>
       <CardActionArea>
@@ -28,7 +30,7 @@ const ImgMediaCard: FC<IProps> = ({ title, story, image, currentAmount, goalAmou
           </Typography>
         </CardContent>
         <CardActions>
-          <Progress currentAmount={currentAmount} goalAmount={goalAmount} backers={118} />
+          <Progress currentAmount={currentAmount} goalAmount={goalAmount} contributions={contributions} />
         </CardActions>
       </CardActionArea>
     </Card>

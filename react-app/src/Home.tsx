@@ -45,6 +45,7 @@ const Home = () => {
                       image={campaign.image_url}
                       currentAmount={campaign.current_amount}
                       goalAmount={campaign.goal_amount}
+                      contributions={campaign.contributions}
                     />
                   </Link>
                 </Grid>

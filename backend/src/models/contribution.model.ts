@@ -7,7 +7,7 @@ export interface ContributionDocument extends mongoose.Document {
   date: Date;
 }
 
-const contributionSchema = new mongoose.Schema({
+export const contributionSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: false,

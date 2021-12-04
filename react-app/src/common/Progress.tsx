@@ -1,14 +1,15 @@
 import { Box, Typography } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
 import { FC } from 'react';
+import { IContribution } from '../interfaces';
 
 interface IProps {
   currentAmount: number;
   goalAmount: number;
-  backers: number;
+  contributions: [IContribution] | undefined;
 }
 
-const Progress: FC<IProps> = ({ currentAmount, goalAmount, backers }) => {
+const Progress: FC<IProps> = ({ currentAmount, goalAmount, contributions }) => {
   const percent: number = (currentAmount / goalAmount) * 100;
 
   return (
@@ -30,7 +31,7 @@ const Progress: FC<IProps> = ({ currentAmount, goalAmount, backers }) => {
           </Box>
           <Box>
             <Typography fontSize="1.2rem" ml={1}>
-              {backers} backers
+              {contributions && contributions.length} backers
             </Typography>
           </Box>
         </Box>
