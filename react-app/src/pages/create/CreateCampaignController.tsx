@@ -74,10 +74,11 @@ const CreateCampaignController: FC = () => {
       try {
         console.log(requestObject);
         setButtonLoading(true);
-        let { data } = await postFundraiser(requestObject);
+        let response = await postFundraiser(requestObject);
+        console.log(response.headers);
         setTimeout(() => {
-          let campaign = '/campaign/' + data._id;
-          navigate(campaign);
+          let onboarding = response.headers['x-stripe-onboarding'];
+          window.location.replace(onboarding);
         }, 200);
       } catch (ex: any) {
         console.log(ex.message);

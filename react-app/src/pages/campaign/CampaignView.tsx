@@ -108,7 +108,7 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
           {campaign.contributions &&
             campaign.contributions.map((contribution) => {
               return (
-                <Box sx={{ display: 'flex', alignItems: 'center' }} mt={2}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }} mt={2} key={contribution._id}>
                   <Avatar sx={{ bgcolor: 'primary' }} alt="+" src="/broken-image.jpg" />
                   <Box ml={2} sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography fontWeight="bold" fontSize="1.1rem">

@@ -33,7 +33,18 @@ export async function createFundraiserHandler(req: Request, res: Response) {
   // Create our Fundraiser
   try {
     let fundraiser = await createFundraiser(stripeFundraiser);
-    return res.send(fundraiser);
+
+    // Create Stripe onboarding account link, send as a header in response
+    let baseUrl = process.env.REACT_APP_URL;
+    let accountLinkData = {
+      account: stripeAccount.id,
+      refresh_url: baseUrl,
+      return_url: baseUrl + `/campaign/${fundraiser._id}`,
+      type: 'account_onboarding',
+    };
+    const accountLink = await stripe.accountLinks.create(accountLinkData);
+
+    return res.header('x-stripe-onboarding', accountLink.url).send(fundraiser);
   } catch (ex: any) {
     logger.error(ex);
     res.status(400).send(ex.message);

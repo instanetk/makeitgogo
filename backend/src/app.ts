@@ -8,7 +8,10 @@ import routes from './routes';
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  exposedHeaders: 'x-stripe-onboarding',
+};
+app.use(cors(corsOptions));
 
 const port = process.env.PORT || 5000;
 

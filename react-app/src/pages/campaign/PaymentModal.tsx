@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Modal, Box, Button, Typography } from '@mui/material';
+import { Modal, Box, Button, Typography, FormControl, InputLabel, OutlinedInput, InputAdornment } from '@mui/material';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { stripeTokenHandler } from '../../services/contributionService';
 import { ICampaign } from '../../interfaces';
@@ -13,12 +13,12 @@ interface IProps {
 const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
-      color: '#32325d',
+      color: '#000',
       fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
       fontSmoothing: 'antialiased',
-      fontSize: '16px',
+      fontSize: '1.4rem',
       '::placeholder': {
-        color: '#aab7c4',
+        color: '#333',
       },
     },
     invalid: {
@@ -44,8 +44,18 @@ const style = {
 
 const PaymentModal: FC<IProps> = ({ open, handleClose, campaign }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [amount, setAmount] = useState<number | null>(null);
+  const [error, setError] = useState<string | undefined>('');
+
   const stripe = useStripe();
   const elements = useElements();
+
+  const handleAmount = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    let amount = parseInt(event.target.value);
+    if (!isNaN(amount)) {
+      setAmount(amount);
+    } else setAmount(null);
+  };
 
   const handleSubmit = async (event: any) => {
     // We don't want to let default form submission happen here,
@@ -65,18 +75,24 @@ const PaymentModal: FC<IProps> = ({ open, handleClose, campaign }) => {
     if (result !== undefined)
       if (result.error) {
         // Show error to customer.
-        console.log(result.error.message);
+        setError(result.error.message);
       } else {
         // Send the token to server.
         let token = result.token;
 
+        if (amount === null) return;
         let transaction = {
-          amount: 100,
+          amount,
           fundraiserId: campaign._id as string,
           token,
         };
         setIsLoading(true);
-        stripeTokenHandler(transaction);
+        const { data } = await stripeTokenHandler(transaction);
+
+        if (data.status === 'succeeded') {
+          console.log(data.status);
+          handleClose();
+        }
       }
   };
 
@@ -88,11 +104,29 @@ const PaymentModal: FC<IProps> = ({ open, handleClose, campaign }) => {
       aria-describedby="to make a contribution to this campaign enter your credit card details">
       <Box sx={style} component="form" onSubmit={handleSubmit}>
         <Typography variant="body1" sx={{ marginBottom: '20px' }}>
-          MakeItGoGo is a is a demo for Stripe Connect and Express. It is not a real product. Payments will not be
-          processed. Use card number 4242 4242 4242 4242 with an exipiration date anytime in the future, random CVC and
-          Zip.
+          MakeItGoGo is a is a demo application for Stripe integration. It is not a real product. Payments will not be
+          processed. Use card number 4242 4242 4242 4242 with an expiration date anytime in the future, random CVC and
+          any Zip.
         </Typography>
-        <CardElement options={CARD_ELEMENT_OPTIONS} />
+
+        <FormControl fullWidth>
+          <InputLabel htmlFor="goal_amount">In U.S. Dollars</InputLabel>
+          <OutlinedInput
+            id="amount"
+            placeholder="500"
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            endAdornment={<InputAdornment position="end">USD</InputAdornment>}
+            label="amount"
+            sx={{ width: '100%', fontWeight: 'bold', fontSize: '2rem' }}
+            onChange={handleAmount}
+            value={amount}
+            type="number"
+          />
+        </FormControl>
+
+        <Box sx={{ marginTop: '20px' }}>
+          <CardElement options={CARD_ELEMENT_OPTIONS} />
+        </Box>
         <Button
           type="submit"
           disabled={!stripe || isLoading}
