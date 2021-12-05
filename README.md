@@ -2,13 +2,13 @@
 
 ## Overview
 
-MakeItGoGo is a crowdfunding full-stack application made with React.js and Express.js integrating the Firebase API for user authentication and the Stripe APIs for payment processing. As an unregistered user you are able to view campaigns and contribute (BACK IT) with a test credit card number. You are also able to show your appreciation and support for a particular campaign by giving it unlimited Faves.
+MakeItGoGo is a crowdfunding full-stack application made with React.js and Express.js integrating the Firebase API for user authentication and the Stripe API for payment processing. As an unregistered user you are able to view campaigns and contribute (BACK IT) with a test credit card number. You are also able to show your appreciation and support for a particular campaign by giving it unlimited Faves.
 
 As a registered user, you are able to create a campaign providing the required campaign title and story, upload an image for display in the campaign card and page, choose a category and stablish a US dollar goal amount.
 
 Each campaign receives funds individually, for which reason a dedicated account is created on Stripe at the moment of submission. The browser receives a redirect URL through the headers leading to the Stripe Connect onboarding and verification flow. This is where a campaing owner would provide banking and ID verification to received funds collected by MakeItGoGo. Because this is a test environment, Stripe provides way to enter dummy information for such thing as routing and account numbers. Once the onboaring is completed, Stripe redirects the user to the newly created campaign URL on MakeItGoGo. The campaign is now able to accept credit card payments.
 
-The campaign owner would see an EDIT link which would allow them to modify all campaign data originally provided upon creation, even the goal amount. All form fields are pre-filled with the existing data to faciliate in things like typo corrections, etc. On this same page, a campaign owner is able to DELETE the campaign.
+The campaign owner would see an EDIT link which would allow them to modify all campaign data originally provided upon creation, even the goal amount. All form fields are pre-filled with the existing data to facilitate in things like typo corrections, etc. On this same page, a campaign owner is able to DELETE the campaign.
 
 ## Installation
 
@@ -86,7 +86,7 @@ REACT_APP_STRIPE_PUBLISHABLE_KEY=
 REACT_APP_API_URL=
 ```
 
-These values will come from you Firebase API credentials, Cloudinary (for image upload storage), Stripe Publishable Key, and a reference to the Express server API endpoint (and port number if in development environment) eg: `http://localhost:5000/api`
+These values will come from your Firebase API credentials, Cloudinary (for image upload storage), Stripe Publishable Key, and a reference to the Express server API endpoint (and port number if in development environment) eg: `http://localhost:5000/api`
 
 Now run the following command from your CLI:
 
@@ -110,7 +110,7 @@ The `Progress` component (highlighted) found in `/src/common/progress.tsx` was a
 
 ### Campaign page
 
-On the campaign page we see a clean look with plenty of white space balancing the elements. Notice the appearance of the `Progress` reusable component. We use an fuchsia accent color to highlight the main call to action to back a project on the BACK IT button.
+On the campaign page we see a clean look with plenty of white space balancing the elements. Notice the appearance of the `Progress` reusable component. We use a fuchsia accent color to highlight the main call to action to back a project with the BACK IT button.
 
 ![figure 2](media/figure2.png)
 
@@ -132,7 +132,7 @@ A `Fundraiser` collection would store all data attributes of a Campaign document
 
 The API endpoint requests go through the following path: `Request > Route > Controller > Service > Model > Schema`.
 
-As seen in the folder structure below, this MVC patterns allows for the separation of concerns and a cleaner implementation of the API. The `Route` calls a function handler from the `Controller` which forwards the request to a `Service` function where the database is queried. This in turn passed to the Mongoose `Model` and data structure validatin is performed by the `Schema`.
+As seen in the folder structure below, this MVC patterns allows for the separation of concerns and a cleaner implementation of the API. The `Route` calls a function handler from the `Controller` which forwards the request to a `Service` function where the database is queried. This in turn passed to the Mongoose `Model` and data structure validation is performed by the `Schema`.
 
 ![figure 4](media/figure4.png)
 
