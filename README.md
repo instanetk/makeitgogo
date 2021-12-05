@@ -110,7 +110,7 @@ The `Progress` component (highlighted) found in `/src/common/progress.tsx` was a
 
 ### Campaign page
 
-On the campaign page we see a clean look with plenty of white space balancing the elements. Notice the appearance of the `Progress` reusable component. We use an fuchia accent color to highlight the main call to action to back a project on the BACK IT button.
+On the campaign page we see a clean look with plenty of white space balancing the elements. Notice the appearance of the `Progress` reusable component. We use an fuchsia accent color to highlight the main call to action to back a project on the BACK IT button.
 
 ![figure 2](media/figure2.png)
 
@@ -118,4 +118,30 @@ A small modal opens upon click where the user can enter a contribution amount an
 
 ![figure 3](media/figure3.png)
 
+Upon campaign contribution the progress bar advances and a record appears under the `CONTRIBUTIONS` section.
+
 ## Architectural Overview
+
+### Data relationship
+
+The data relationship was structured as follows:
+
+A `Fundraiser` collection would store all data attributes of a Campaign document. Each time a `Contribution` was made it would be embedded as a subdocument in the `contributions` array of `Fundraiser`. This way a Campaign document always keep a record of every action performed.
+
+### Model-View-Controller
+
+The API endpoint requests go through the following path: `Request > Route > Controller > Service > Model > Schema`.
+
+As seen in the folder structure below, this MVC patterns allows for the separation of concerns and a cleaner implementation of the API. The `Route` calls a function handler from the `Controller` which forwards the request to a `Service` function where the database is queried. This in turn passed to the Mongoose `Model` and data structure validatin is performed by the `Schema`.
+
+![figure 4](media/figure4.png)
+
+### Frontend
+
+On the frontend we follow the same pattern within the organizational structure of React conventions. Under the `pages` directory we organize the components under their matching route names following the convention `Controller > View` to separate concerns between business logic and presentation.
+
+![figure 5](media/figure5.png)
+
+## Conclusion
+
+It has been an extremely rewarding experience having the privilege of working on this project. The amount of learning was nothing less than astounding and very challenging at times. Thank you for taking the time to review my project and notes.
