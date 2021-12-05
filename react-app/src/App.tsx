@@ -8,13 +8,13 @@ import Login from './pages/login/LoginController';
 import SignUp from './pages/signup/SignupController';
 import CampaignController from './pages/campaign/CampaignController';
 import CreateCampaignController from './pages/create/CreateCampaignController';
+import EditCampaignController from './pages/edit/EditCampaignController';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './NotFound';
 import Footer from './common/Footer';
 import './App.css';
 import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
-import Dashboard from './Dashboard';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -35,7 +35,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/campaign/:id" element={<CampaignController />} />
             <Route
-              path="/create"
+              path="/campaign/create"
               element={
                 <PrivateRoute user={user}>
                   <CreateCampaignController />
@@ -46,7 +46,7 @@ function App() {
               path="/campaign/edit/:id"
               element={
                 <PrivateRoute user={user}>
-                  <Dashboard />
+                  <EditCampaignController />
                 </PrivateRoute>
               }
             />

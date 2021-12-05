@@ -33,7 +33,7 @@ const NavBar = () => {
               <MakeItGoGo style={{ width: '175px', height: 'auto', marginTop: '20px' }} />
             </Link>
           </Typography>
-          <Link to="/create">
+          <Link to="/campaign/create">
             <Button color="inherit">Create Campaign</Button>
           </Link>
           {user ? (

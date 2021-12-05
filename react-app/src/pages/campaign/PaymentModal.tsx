@@ -89,8 +89,8 @@ const PaymentModal: FC<IProps> = ({ open, handleClose, campaign }) => {
         setIsLoading(true);
         const { data } = await stripeTokenHandler(transaction);
 
+        console.log(data);
         if (data.status === 'succeeded') {
-          console.log(data.status);
           handleClose();
         }
       }

@@ -50,15 +50,7 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
                 {campaign.title}
               </Typography>
             </Box>
-            {/* <Box sx={{ display: 'flex', alignItems: 'center', margin: '10px 0' }}>
-              <Avatar sx={{ bgcolor: 'primary' }} alt="David Quintero" src="/broken-image.jpg" />
-              <Box ml={2}>
-                <Typography fontWeight="bold" fontSize="1.1rem">
-                  David Quintero
-                </Typography>
-                <Typography>Orlando, FL</Typography>
-              </Box>
-            </Box> */}
+
             <Box sx={{ margin: '15px 0' }}>
               <Progress
                 currentAmount={campaign.current_amount}

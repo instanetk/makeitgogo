@@ -6,6 +6,8 @@ import {
   getFundraisersHandler,
   getFundraiserByIdHandler,
   postFavesHandler,
+  updateFundraiserHandler,
+  deleteFundraiserHandler,
 } from './controller/fundraiser.controller';
 import { processContributionHandler } from './controller/contribution.controller';
 
@@ -23,6 +25,12 @@ function routes(app: Express) {
   app.post('/api/fundraiser/campaign/faves/:id', postFavesHandler);
 
   app.post('/api/fundraiser/campaign/contribution', processContributionHandler);
+
+  app.put('/api/fundraiser/campaign/:id', updateFundraiserHandler);
+
+  app.patch('/api/fundraiser/campaign/:id', updateFundraiserHandler);
+
+  app.delete('/api/fundraiser/campaign/:id', deleteFundraiserHandler);
 }
 
 export default routes;

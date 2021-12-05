@@ -32,4 +32,12 @@ export interface ITransaction {
   token: Token;
 }
 
+export interface ICampaignUpdate {
+  title: string;
+  story: string;
+  image_url: string;
+  category: string;
+  goal_amount: number;
+}
+
 export type IUser = UserInfo | null;

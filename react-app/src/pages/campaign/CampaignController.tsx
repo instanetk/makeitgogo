@@ -3,7 +3,7 @@ import { useTitle } from '../../common/Hooks';
 import { useParams } from 'react-router-dom';
 import CampaignView from './CampaignView';
 import { ICampaign } from '../../interfaces';
-import { getFundraiseById, postFaves } from '../../services/fundraiserService';
+import { getFundraiserById, postFaves } from '../../services/fundraiserService';
 import { AuthContext } from '../../context/AuthContext';
 
 const CampaignController: FC = () => {
@@ -31,7 +31,7 @@ const CampaignController: FC = () => {
   const fetchData = useCallback(async () => {
     try {
       if (id !== undefined) {
-        let { data } = await getFundraiseById(id);
+        let { data } = await getFundraiserById(id);
         setCampaign(data);
       }
     } catch (ex: any) {

@@ -1,22 +1,72 @@
-import { useState, FC, useContext } from 'react';
-import { ICampaign } from '../../interfaces';
+import { useState, FC, useContext, useCallback, useEffect } from 'react';
+import { ICampaign, ICampaignUpdate } from '../../interfaces';
 import { AuthContext } from '../../context/AuthContext';
-import { postFundraiser } from '../../services/fundraiserService';
-import CreateCampaignView from './CreateCampaignView';
+import EditCampaignView from './EditCampaignView';
 import { SelectChangeEvent } from '@mui/material';
+import { getFundraiserById, updateFundraiser, deleteFundraiser } from '../../services/fundraiserService';
+import { useParams, useNavigate } from 'react-router';
 
-const CreateCampaignController: FC = () => {
+const EditCampaignController: FC = () => {
+  let navigate = useNavigate();
+  const defaulState: ICampaign = {
+    title: '',
+    story: '',
+    image_url: '',
+    category: '',
+    goal_amount: 1,
+    current_amount: 0,
+    published: false,
+    owner: '',
+    email: '',
+    _id: '',
+    date: new Date(),
+  };
+  const [campaign, setCampaign] = useState<ICampaign>(defaulState);
+
+  const { id } = useParams<string>();
+
+  const fetchData = useCallback(async () => {
+    try {
+      if (id !== undefined) {
+        let { data } = await getFundraiserById(id);
+        setCampaign(data);
+      }
+    } catch (ex: any) {
+      console.log(ex.message);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  useEffect(() => {
+    // set initial states
+    setTitle(campaign.title);
+    setTextEditor(campaign.story);
+    setImgUrl(campaign.image_url);
+    setCategory(campaign.category);
+    setGoalAmount(campaign.goal_amount);
+  }, [campaign.title, campaign.story, campaign.image_url, campaign.category, campaign.goal_amount]);
+
   let user = useContext(AuthContext);
 
   type DataUnion = string | Blob;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [image, setImage] = useState<DataUnion>('');
+  const [title, setTitle] = useState<string>('');
   const [imgUrl, setImgUrl] = useState<string>('');
   const [textEditor, setTextEditor] = useState<string>('');
   const [goalAmount, setGoalAmount] = useState<number>(0);
   const [category, setCategory] = useState<string>('Art');
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
+  const [published, setPublished] = useState<boolean>(true);
+
+  const handleTitle = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    let title = event.target.value;
+    setTitle(title);
+  };
 
   const handleAmount = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     let amount = parseInt(event.target.value);
@@ -32,7 +82,6 @@ const CreateCampaignController: FC = () => {
 
   const handleCategory = (event: SelectChangeEvent<unknown>) => {
     const category = event.target.value as string;
-    console.log(category);
     setCategory(category);
   };
 
@@ -43,28 +92,35 @@ const CreateCampaignController: FC = () => {
     let title = data.get('title') as string;
 
     if (user !== null) {
-      let requestObject: ICampaign = {
+      let requestObject: ICampaignUpdate = {
         title,
         story: textEditor,
         image_url: imgUrl,
         category,
         goal_amount: goalAmount,
-        current_amount: 0,
-        owner: user.uid,
-        email: user.email,
       };
       try {
         setButtonLoading(true);
-        let response = await postFundraiser(requestObject);
+
+        if (id !== undefined) await updateFundraiser(id, requestObject);
         setTimeout(() => {
-          let onboarding = response.headers['x-stripe-onboarding'];
-          window.location.replace(onboarding);
-        }, 400);
+          let campaign = '/campaign/' + id;
+          navigate(campaign);
+        }, 200);
       } catch (ex: any) {
         console.log(ex.message);
         setButtonLoading(false);
       }
     }
+  };
+
+  const handleDelete = async (event: any): Promise<void> => {
+    try {
+      setButtonLoading(true);
+
+      if (id !== undefined) await deleteFundraiser(id);
+      navigate('/');
+    } catch (ex: any) {}
   };
 
   const setFile = async (e: any) => {
@@ -98,7 +154,10 @@ const CreateCampaignController: FC = () => {
   };
 
   return (
-    <CreateCampaignView
+    <EditCampaignView
+      campaign={campaign}
+      handleTitle={handleTitle}
+      title={title}
       handleSubmit={handleSubmit}
       textEditor={textEditor}
       handleTextEditor={handleTextEditor}
@@ -109,8 +168,9 @@ const CreateCampaignController: FC = () => {
       handleAmount={handleAmount}
       goalAmount={goalAmount}
       buttonLoading={buttonLoading}
+      handleDelete={handleDelete}
     />
   );
 };
 
-export default CreateCampaignController;
+export default EditCampaignController;

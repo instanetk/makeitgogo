@@ -1,6 +1,14 @@
 import { Request, Response } from 'express';
 import logger from '../utils/logger';
-import { createFundraiser, getFundraisers, getFundraiserById, postFaves } from '../service/fundraiser.service';
+import {
+  createFundraiser,
+  getFundraisers,
+  getFundraiserById,
+  postFaves,
+  updateFundraiser,
+  unpublishFundraiser,
+  deleteFundraiser,
+} from '../service/fundraiser.service';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export async function createFundraiserHandler(req: Request, res: Response) {
@@ -82,5 +90,39 @@ export async function postFavesHandler(req: Request, res: Response) {
   } catch (ex: any) {
     logger.error(ex);
     res.status(400).send(ex.messages);
+  }
+}
+
+export async function updateFundraiserHandler(req: Request, res: Response) {
+  let { id } = req.params;
+
+  try {
+    let fundraiser = await updateFundraiser(id, req.body);
+    return res.send(fundraiser);
+  } catch (ex: any) {
+    logger.error(ex);
+    res.status(400).send(ex.message);
+  }
+}
+
+export async function unpublishFundraiserHandler(req: Request, res: Response) {
+  let { id } = req.params;
+  try {
+    let fundraiser = await unpublishFundraiser(id);
+    return res.send(fundraiser);
+  } catch (ex: any) {
+    logger.error(ex);
+    res.status(400).send(ex.message);
+  }
+}
+
+export async function deleteFundraiserHandler(req: Request, res: Response) {
+  let { id } = req.params;
+  try {
+    await deleteFundraiser(id);
+    return res.send('deleted');
+  } catch (ex: any) {
+    logger.error(ex);
+    res.status(400).send(ex.message);
   }
 }
