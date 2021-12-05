@@ -38,7 +38,7 @@ This will start the server on the `PORT` provided in the `.env` file.
 
 ### Expected payload
 
-Making a get request to the `/api/fundraiser` endpoint should return an array of campaign objects similarly structured:
+Making a `GET` request to the `/api/fundraiser` endpoint should return an array of campaign objects similarly structured with a `200` response code:
 
 ```
 [
@@ -97,3 +97,11 @@ This will install all project dependencies. Then:
 `npm run start`
 
 This will start the app on `PORT 3000`.
+
+## Design Choices
+
+Following the theme of crowdfunding apps, MakeItGoGo makes use of the Card presentation for each campaign on the front page showing on each of these the current progress of its campaign.
+
+The `Progress` component (highlighted) found in `/src/common/progress.tsx` was a key reusable component also used in the campaign pages.
+
+[![figure 1](media/figure1.png)]
