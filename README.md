@@ -1,6 +1,4 @@
-<p align="center">
 [![makeitgogo logo](media/makeitgogo.svg 'click to visit')](https://makeitgogo.davidquintero.dev)
-</p>
 
 ## Overview
 
@@ -18,13 +16,13 @@ The campaign owner would see an EDIT link which would allow them to modify all c
 
 This project consists of a React app and an Express server. We will start with the Express server. Navigate to the `backend` directory and create a `.env` file with the following variables:
 
-[code]
+```
 PORT=
 DB_URI=
 STRIPE_SECRET_KEY=
 REACT_APP_URL=
 COMPANY_NAME=
-[/code]
+```
 
 Here you must provide the PORT number, a MongoDB URI string, the Stripe API Secret Key, the HTTP URL of the React app (and port number if in development environment), and the app name as COMPANY_NAME.
 
@@ -42,7 +40,7 @@ This will start the server on the `PORT` provided in the `.env` file.
 
 Navigate to the `react-app` directory and create a `.env` file with the following variables:
 
-[code]
+```
 REACT_APP_FIREBASE_API_KEY=
 REACT_APP_FIREBASE_AUTH_DOMAIN=
 REACT_APP_FIREBASE_PROJECT_ID=
@@ -54,7 +52,7 @@ REACT_APP_CLOUDINARY_CLOUD_NAME=
 REACT_APP_CLOUDINARY_UPLOAD_PRESET=
 REACT_APP_STRIPE_PUBLISHABLE_KEY=
 REACT_APP_API_URL=
-[/code]
+```
 
 These values will come from you Firebase API credentials, Cloudinary (for image upload storage), Stripe Publishable Key, and a reference to the Express server API endpoint (and port number if in development environment) eg: `http://localhost:5000/api`
 
