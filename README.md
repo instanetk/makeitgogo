@@ -1,3 +1,5 @@
+[![makeitgogo logo](media/makeitgogo.svg 'click to visit')](https://makeitgogo.davidquintero.dev)
+
 # MakeItGoGo
 
 ### Overview
