@@ -100,8 +100,7 @@ const PaymentModal: FC<IProps> = ({ open, handleClose, campaign }) => {
     <Modal
       open={open}
       onClose={handleClose}
-      aria-labelledby="credit card payment form"
-      aria-describedby="to make a contribution to this campaign enter your credit card details">
+      aria-label="credit card payment form to make a contribution to this campaign enter credit card details">
       <Box sx={style} component="form" onSubmit={handleSubmit}>
         <Typography variant="body1" sx={{ marginBottom: '20px' }}>
           MakeItGoGo is a is a demo application for Stripe integration. It is not a real product. Payments will not be

@@ -22,17 +22,17 @@ const NavBar = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} aria-label="Navigation bar">
       <AppBar position="static">
         <Toolbar>
           {/* <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton> */}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1 }} aria-label="logo: make it go go. links to the home page.">
             <Link to="/">
               <MakeItGoGo style={{ width: '175px', height: 'auto', marginTop: '20px' }} />
             </Link>
-          </Typography>
+          </Box>
           <Link to="/campaign/create">
             <Button color="inherit">Create Campaign</Button>
           </Link>

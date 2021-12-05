@@ -21,14 +21,6 @@ const Home = () => {
     fetchData();
   }, [fetchData]);
 
-  if (fundraisers !== null) {
-    fundraisers.sort(function (a: any, b: any) {
-      // Turn your strings into dates, and then subtract them
-      // to get a value that is either negative, positive, or zero.
-      return +b.date - +a.date;
-    });
-  }
-
   return (
     <Box mt={4} sx={{ display: 'flex', justifyContent: 'center' }}>
       <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -37,7 +29,7 @@ const Home = () => {
           fundraisers.map((campaign: ICampaign) => {
             if (campaign.published)
               return (
-                <Grid item key={campaign._id}>
+                <Grid item key={campaign._id} aria-label="campaign card">
                   <Link to={`/campaign/${campaign._id}`}>
                     <ImgMediaCard
                       title={campaign.title}

@@ -12,6 +12,7 @@ react-app/coverage
 
 # production
 react-app/build
+react-app/Dockerfile
 
 # misc
 react-app/.DS_Store

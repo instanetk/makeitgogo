@@ -61,7 +61,6 @@ const EditCampaignController: FC = () => {
   const [goalAmount, setGoalAmount] = useState<number>(0);
   const [category, setCategory] = useState<string>('Art');
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
-  const [published, setPublished] = useState<boolean>(true);
 
   const handleTitle = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     let title = event.target.value;

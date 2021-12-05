@@ -60,6 +60,7 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button
+                aria-label="button to contribute to this campaign"
                 variant="contained"
                 color="info"
                 sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}
@@ -67,6 +68,7 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
                 Back It
               </Button>
               <Button
+                aria-label="button to fave this campaign"
                 variant="outlined"
                 color="primary"
                 sx={{ height: '3.4rem', width: '48%', fontSize: '1.5rem' }}
@@ -107,10 +109,7 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
                       ${contribution.amount && contribution.amount.toLocaleString('en-US')}
                     </Typography>
                     <Typography fontSize="1.1rem" ml={1}>
-                      on{' '}
-                      {() => {
-                        if (contribution.date !== undefined) new Date(contribution.date).toLocaleString();
-                      }}
+                      on {contribution.date && contribution.date.toLocaleString('en-US')}
                     </Typography>
                   </Box>
                 </Box>

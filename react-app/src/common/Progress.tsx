@@ -22,7 +22,12 @@ const Progress: FC<IProps> = ({ currentAmount, goalAmount, contributions }) => {
             alignContent: 'center',
           }}>
           <Box sx={{ display: 'inline-flex' }}>
-            <Typography variant="h2" fontWeight="bold" fontSize="1.5rem" color="#222">
+            <Typography
+              variant="h2"
+              fontWeight="bold"
+              fontSize="1.5rem"
+              color="#222"
+              aria-label="amount raised by this campaign">
               ${currentAmount.toLocaleString('en-US')}
             </Typography>
             <Typography fontWeight="light" fontSize="1.3rem" ml={1}>
