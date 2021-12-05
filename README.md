@@ -36,6 +36,38 @@ This will install all project dependencies. Then:
 
 This will start the server on the `PORT` provided in the `.env` file.
 
+### Expected payload
+
+Making a get request to the `/api/fundraiser` endpoint should return an array of campaign objects similarly structured:
+
+```
+[
+  {
+  "_id":"61ac706c947d3bc22c43a869",
+  "title":"Carved Exotic Wood Bookcase of Curated Holy Books",
+  "story":"A curated library of mankind's holy scriptures embedded in an exotic carved block of wood to form one level. Features the Tao Te Ching, Analects of Confucius, The Torah, The Discourses of the Buddha, The Qu'ran, The Bible and The Bhagavad Gita.\n\n",
+  "image_url":"https://res.cloudinary.com/dgt2j8jc0/image/upload/v1638690898/MakeItGoGo/oyuewczf75la5wqexycv.png",
+  "category":"Education",
+  "goal_amount":12000,
+  "current_amount":500,
+  "published":true,
+  "owner":"pTJcUxNYUcYXKzfUm7EzVAaqv7t1",
+  "email":"makeit@davidquintero.dev",
+  "stripeId":"acct_1K3FZ8QtwaCQBlju",
+  "faves":4,
+  "date":"2021-12-05T07:55:24.221Z",
+  "contributions":[
+      {
+          "amount":500,
+          "fundraiserId":"61ac706c947d3bc22c43a869",
+          "date":"2021-12-05T18:11:56.966Z",
+          "_id":"61ad00ecc213671e258be6f7",
+          "__v":0
+      }],
+   "__v":1
+   },]
+```
+
 ### React App
 
 Navigate to the `react-app` directory and create a `.env` file with the following variables:
