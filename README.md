@@ -100,8 +100,22 @@ This will start the app on `PORT 3000`.
 
 ## Design Choices
 
+### Front page
+
 Following the theme of crowdfunding apps, MakeItGoGo makes use of the Card presentation for each campaign on the front page showing on each of these the current progress of its campaign.
 
 The `Progress` component (highlighted) found in `/src/common/progress.tsx` was a key reusable component also used in the campaign pages.
 
-[![figure 1](media/figure1.png)]
+![figure 1](media/figure1.png)
+
+### Campaign page
+
+On the campaign page we see a clean look with plenty of white space balancing the elements. Notice the appearance of the `Progress` reusable component. We use an fuchia accent color to highlight the main call to action to back a project on the BACK IT button.
+
+![figure 2](media/figure2.png)
+
+A small modal opens upon click where the user can enter a contribution amount and test credit card.
+
+![figure 3](media/figure3.png)
+
+## Architectural Overview
