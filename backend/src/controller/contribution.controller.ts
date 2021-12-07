@@ -6,6 +6,7 @@ import Fundraiser from '../models/fundraiser.model';
 
 export async function processContributionHandler(req: Request, res: Response) {
   let fundraiser;
+  let charge;
 
   console.log(req.body);
   // consider implementing 2 Phased Transactions
@@ -13,7 +14,7 @@ export async function processContributionHandler(req: Request, res: Response) {
   try {
     fundraiser = await Fundraiser.findById(req.body.fundraiserId);
 
-    const charge = await stripe.charges.create({
+    charge = await stripe.charges.create({
       amount: req.body.amount * 100,
       currency: 'usd',
       description: fundraiser.title,
@@ -28,7 +29,8 @@ export async function processContributionHandler(req: Request, res: Response) {
   }
 
   try {
-    let contribution = await processContribution(req.body);
+    let contribution;
+    if (charge.status === 'succeeded') contribution = await processContribution(req.body);
 
     // insert object into Fundraiser contribution
     fundraiser.contributions.push(contribution);
@@ -38,7 +40,7 @@ export async function processContributionHandler(req: Request, res: Response) {
 
     fundraiser.save();
 
-    return res.send(contribution);
+    return res.send(charge);
   } catch (ex: any) {
     logger.error(ex);
     res.status(400).send(ex.message);

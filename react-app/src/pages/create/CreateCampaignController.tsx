@@ -14,7 +14,7 @@ const CreateCampaignController: FC = () => {
   const [image, setImage] = useState<DataUnion>('');
   const [imgUrl, setImgUrl] = useState<string>('');
   const [textEditor, setTextEditor] = useState<string>('');
-  const [goalAmount, setGoalAmount] = useState<number>(0);
+  const [goalAmount, setGoalAmount] = useState<number | null>(null);
   const [category, setCategory] = useState<string>('Art');
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
@@ -22,7 +22,7 @@ const CreateCampaignController: FC = () => {
     let amount = parseInt(event.target.value);
     if (!isNaN(amount)) {
       setGoalAmount(amount);
-    } else setGoalAmount(0);
+    } else setGoalAmount(null);
   };
 
   const handleTextEditor = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {

@@ -5,11 +5,12 @@ import { IContribution } from '../interfaces';
 
 interface IProps {
   currentAmount: number;
-  goalAmount: number;
+  goalAmount: number | null;
   contributions: [IContribution] | undefined;
 }
 
 const Progress: FC<IProps> = ({ currentAmount, goalAmount, contributions }) => {
+  if (goalAmount === null) goalAmount = 0;
   const percent: number = (currentAmount / goalAmount) * 100;
 
   return (

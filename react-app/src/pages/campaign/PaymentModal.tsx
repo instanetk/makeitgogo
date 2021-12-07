@@ -8,6 +8,7 @@ interface IProps {
   open: boolean;
   handleClose: () => void;
   campaign: ICampaign;
+  fetchData: () => Promise<void>;
 }
 
 const CARD_ELEMENT_OPTIONS = {
@@ -42,7 +43,7 @@ const style = {
   width: '300px',
 };
 
-const PaymentModal: FC<IProps> = ({ open, handleClose, campaign }) => {
+const PaymentModal: FC<IProps> = ({ open, handleClose, campaign, fetchData }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [amount, setAmount] = useState<number | null>(null);
   const [error, setError] = useState<string | undefined>('');
@@ -92,6 +93,7 @@ const PaymentModal: FC<IProps> = ({ open, handleClose, campaign }) => {
         console.log(data);
         if (data.status === 'succeeded') {
           handleClose();
+          fetchData();
         }
       }
   };

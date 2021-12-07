@@ -62,6 +62,7 @@ const CampaignController: FC = () => {
     handleClose: function () {
       setModalOpen(!modalOpen);
     },
+    fetchData,
   };
 
   return <CampaignView campaign={campaign} giveFaves={giveFaves} owner={owner} modal={modal} />;

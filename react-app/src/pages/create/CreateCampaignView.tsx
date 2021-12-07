@@ -27,7 +27,7 @@ interface IProps {
   category: string;
   handleCategory: (event: SelectChangeEvent<unknown>) => void;
   handleAmount: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
-  goalAmount: number;
+  goalAmount: number | null;
   buttonLoading: boolean;
 }
 

@@ -7,7 +7,7 @@ export interface ICampaign {
   story: string;
   image_url: string;
   category: string;
-  goal_amount: number;
+  goal_amount: number | null;
   current_amount: number;
   published?: boolean;
   owner: string;
@@ -37,7 +37,7 @@ export interface ICampaignUpdate {
   story: string;
   image_url: string;
   category: string;
-  goal_amount: number;
+  goal_amount: number | null;
 }
 
 export type IUser = UserInfo | null;

@@ -13,13 +13,14 @@ export interface IProps {
   modal: {
     open: boolean;
     handleClose: () => void;
+    fetchData: () => Promise<void>;
   };
 }
 
 const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
   return (
     <>
-      <PaymentModal open={modal.open} handleClose={modal.handleClose} campaign={campaign} />
+      <PaymentModal open={modal.open} handleClose={modal.handleClose} campaign={campaign} fetchData={modal.fetchData} />
       <Grid container spacing={4} mt={1}>
         <Grid item xs={12} md={7}>
           <Box>

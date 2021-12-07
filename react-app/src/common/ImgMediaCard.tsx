@@ -8,7 +8,7 @@ interface IProps {
   story: string;
   image: string;
   currentAmount: number;
-  goalAmount: number;
+  goalAmount: number | null;
   contributions: [IContribution] | undefined;
 }
 

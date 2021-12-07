@@ -58,7 +58,7 @@ const EditCampaignController: FC = () => {
   const [title, setTitle] = useState<string>('');
   const [imgUrl, setImgUrl] = useState<string>('');
   const [textEditor, setTextEditor] = useState<string>('');
-  const [goalAmount, setGoalAmount] = useState<number>(0);
+  const [goalAmount, setGoalAmount] = useState<number | null>(0);
   const [category, setCategory] = useState<string>('Art');
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
