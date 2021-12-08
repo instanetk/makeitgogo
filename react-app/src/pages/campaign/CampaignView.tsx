@@ -101,23 +101,25 @@ const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
           </Box>
 
           {campaign.contributions &&
-            campaign.contributions.map((contribution) => {
-              return (
-                <Box sx={{ display: 'flex', alignItems: 'center' }} mt={2} key={contribution._id}>
-                  <Avatar sx={{ bgcolor: 'primary' }} alt="+" src="/broken-image.jpg" />
-                  <Box ml={2} sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Typography fontWeight="bold" fontSize="1.1rem">
-                      ${contribution.amount && contribution.amount.toLocaleString('en-US')}
-                    </Typography>
-                    <Typography fontSize="1.1rem" ml={1}>
-                      on{' '}
-                      {contribution.date &&
-                        new Date(contribution.date).toLocaleString('en-US', { timeZone: 'EST' }).toString()}
-                    </Typography>
+            campaign.contributions
+              .map((contribution) => {
+                return (
+                  <Box sx={{ display: 'flex', alignItems: 'center' }} mt={2} key={contribution._id}>
+                    <Avatar sx={{ bgcolor: 'primary' }} alt="+" src="/broken-image.jpg" />
+                    <Box ml={2} sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Typography fontWeight="bold" fontSize="1.1rem">
+                        ${contribution.amount && contribution.amount.toLocaleString('en-US')}
+                      </Typography>
+                      <Typography fontSize="1.1rem" ml={1}>
+                        on{' '}
+                        {contribution.date &&
+                          new Date(contribution.date).toLocaleString('en-US', { timeZone: 'EST' }).toString()}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              );
-            })}
+                );
+              })
+              .reverse()}
 
           <Box mt={2}>
             <Typography color="text.primary"></Typography>

@@ -26,23 +26,25 @@ const Home = () => {
       <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
         {fundraisers &&
           // eslint-disable-next-line array-callback-return
-          fundraisers.map((campaign: ICampaign) => {
-            if (campaign.published)
-              return (
-                <Grid item key={campaign._id} aria-label="campaign card">
-                  <Link to={`/campaign/${campaign._id}`}>
-                    <ImgMediaCard
-                      title={campaign.title}
-                      story={campaign.story}
-                      image={campaign.image_url}
-                      currentAmount={campaign.current_amount}
-                      goalAmount={campaign.goal_amount}
-                      contributions={campaign.contributions}
-                    />
-                  </Link>
-                </Grid>
-              );
-          })}
+          fundraisers
+            .map((campaign: ICampaign) => {
+              if (campaign.published)
+                return (
+                  <Grid item key={campaign._id} aria-label="campaign card">
+                    <Link to={`/campaign/${campaign._id}`}>
+                      <ImgMediaCard
+                        title={campaign.title}
+                        story={campaign.story}
+                        image={campaign.image_url}
+                        currentAmount={campaign.current_amount}
+                        goalAmount={campaign.goal_amount}
+                        contributions={campaign.contributions}
+                      />
+                    </Link>
+                  </Grid>
+                );
+            })
+            .reverse()}
       </Grid>
     </Box>
   );
