@@ -1,13 +1,9 @@
-import { FC, FormEvent } from 'react';
+import { FC } from 'react';
 import { Box, Avatar, Typography, TextField, Button, Grid, Link, Alert } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { ILoginProps } from '../../interfaces';
 
-interface IProps {
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
-  error: string;
-}
-
-const LoginForm: FC<IProps> = ({ handleSubmit, error }) => {
+const LoginForm: FC<ILoginProps> = ({ handleSubmit, error }) => {
   return (
     <Box
       sx={{

@@ -43,6 +43,7 @@ const Home = () => {
                     </Link>
                   </Grid>
                 );
+              return null;
             })
             .reverse()}
       </Grid>

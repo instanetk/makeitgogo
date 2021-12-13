@@ -2,22 +2,11 @@ import { FC } from 'react';
 import { Grid, Box, Typography, Card, CardMedia, Button, Avatar } from '@mui/material';
 import Progress from '../../common/Progress';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { ICampaign } from '../../interfaces';
+import { ICampaignViewProps } from '../../interfaces';
 import { Link } from 'react-router-dom';
 import PaymentModal from './PaymentModal';
 
-export interface IProps {
-  campaign: ICampaign;
-  giveFaves: (id: string) => Promise<void>;
-  owner: boolean;
-  modal: {
-    open: boolean;
-    handleClose: () => void;
-    fetchData: () => Promise<void>;
-  };
-}
-
-const CampaignView: FC<IProps> = ({ campaign, giveFaves, owner, modal }) => {
+const CampaignView: FC<ICampaignViewProps> = ({ campaign, giveFaves, owner, modal }) => {
   return (
     <>
       <PaymentModal open={modal.open} handleClose={modal.handleClose} campaign={campaign} fetchData={modal.fetchData} />

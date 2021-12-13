@@ -1,14 +1,9 @@
-import { FC, FormEvent } from 'react';
+import { FC } from 'react';
 import { Box, Avatar, Typography, TextField, Button, Grid, Link, Alert } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { ISignUpProps } from '../../interfaces';
 
-interface IProps {
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
-  error: string;
-  loading: boolean;
-}
-
-const SignupForm: FC<IProps> = ({ handleSubmit, error, loading }) => {
+const SignupForm: FC<ISignUpProps> = ({ handleSubmit, error, loading }) => {
   return (
     <Box
       sx={{

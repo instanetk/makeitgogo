@@ -2,14 +2,7 @@ import { FC, useState } from 'react';
 import { Modal, Box, Button, Typography, FormControl, InputLabel, OutlinedInput, InputAdornment } from '@mui/material';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { stripeTokenHandler } from '../../services/contributionService';
-import { ICampaign } from '../../interfaces';
-
-interface IProps {
-  open: boolean;
-  handleClose: () => void;
-  campaign: ICampaign;
-  fetchData: () => Promise<void>;
-}
+import { IPaymentModalProps } from '../../interfaces';
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -43,9 +36,10 @@ const style = {
   width: '300px',
 };
 
-const PaymentModal: FC<IProps> = ({ open, handleClose, campaign, fetchData }) => {
+const PaymentModal: FC<IPaymentModalProps> = ({ open, handleClose, campaign, fetchData }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [amount, setAmount] = useState<number | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string | undefined>('');
 
   const stripe = useStripe();

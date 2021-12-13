@@ -13,25 +13,12 @@ import {
   InputAdornment,
   Button,
   TextareaAutosize,
-  SelectChangeEvent,
 } from '@mui/material';
 import ImageIcon from '@mui/icons-material/Image';
 import { FC } from 'react';
+import { ICreateCampaignProps } from '../../interfaces';
 
-interface IProps {
-  handleSubmit: (event: any) => Promise<void>;
-  textEditor: string;
-  handleTextEditor: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
-  setFile: (e: any) => Promise<void>;
-  imgUrl: string;
-  category: string;
-  handleCategory: (event: SelectChangeEvent<unknown>) => void;
-  handleAmount: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
-  goalAmount: number | null;
-  buttonLoading: boolean;
-}
-
-const CreateCampaignView: FC<IProps> = ({
+const CreateCampaignView: FC<ICreateCampaignProps> = ({
   handleSubmit,
   textEditor,
   handleTextEditor,

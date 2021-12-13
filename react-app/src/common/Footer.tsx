@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 
 const Footer = () => {
   return (
@@ -9,7 +9,11 @@ const Footer = () => {
         justifyContent: 'center',
         marginTop: '50px',
         backgroundColor: '#eee',
-      }}></Box>
+      }}>
+      <Typography>
+        See code on <Link href="https://github.com/instanetk/makeitgogo">GitHub</Link>
+      </Typography>
+    </Box>
   );
 };
 

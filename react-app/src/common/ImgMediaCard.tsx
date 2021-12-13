@@ -1,18 +1,9 @@
 import { Card, CardMedia, CardContent, Typography, CardActions, CardActionArea } from '@mui/material';
 import Progress from './Progress';
 import { FC } from 'react';
-import { IContribution } from '../interfaces';
+import { IMediaCardProps } from '../interfaces';
 
-interface IProps {
-  title: string;
-  story: string;
-  image: string;
-  currentAmount: number;
-  goalAmount: number | null;
-  contributions: [IContribution] | undefined;
-}
-
-const ImgMediaCard: FC<IProps> = ({ title, story, image, currentAmount, goalAmount, contributions }) => {
+const ImgMediaCard: FC<IMediaCardProps> = ({ title, story, image, currentAmount, goalAmount, contributions }) => {
   return (
     <Card sx={{ maxWidth: { xs: 500, md: 345 }, height: '460px' }}>
       <CardActionArea>
