@@ -4,9 +4,10 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        height: '100px',
         display: 'flex',
+        height: '100px',
         justifyContent: 'center',
+        alignItems: 'center',
         marginTop: '50px',
         backgroundColor: '#eee',
       }}>
